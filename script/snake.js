@@ -8,11 +8,22 @@ var gameOver;
 var cantMove = false;
 var posistionPowerUpp;
 var invert;
+var wallHack;
+var powerUppChoice;
 
 window.onload = function windowInit() {
+    canvas = document.getElementById('canvas');
+    ctx = canvas.getContext('2d');
+    ctx.shadowBlur = 4;
+    ctx.shadowColor = 'gray';
+    ctx.shadowOffsetX = 2;
+    ctx.shadowOffsetY = 2;
     init()
+
 }
  function init() {
+
+     wallHack = false;
      invert = false;
      gameOver = false;
      snake = [];
@@ -22,8 +33,7 @@ window.onload = function windowInit() {
      posistionPowerUpp = {powerUppX: 200, powerUppY: 200};
      apple = {appleX: 100, appleY: 100}
 
-    canvas = document.getElementById('canvas');
-    ctx = canvas.getContext('2d');
+
     ctx.fillStyle = "#000000";
     snake.push({snakeX: 0, snakeY: 0});
     snake.unshift({snakeX: 20, snakeY: 20});
@@ -80,11 +90,38 @@ function updatePosition() {
         }
 function kolisionDetection() {
 
-    if (snake[snake.length-1].snakeX < 0 || snake[snake.length-1].snakeX > size){
-        gameOver = !gameOver;
+    if (snake[snake.length-1].snakeX < 0){
+        if (wallHack){
+            snake[snake.length-1].snakeX = snake[snake.length-1].snakeX  + size + snakeSize;
+        }
+        else{
+            gameOver = !gameOver;
+        }
     }
-    if (snake[snake.length-1].snakeY < 0 || snake[snake.length-1].snakeY > size){
-        gameOver = !gameOver;
+    if (snake[snake.length-1].snakeX > size) {
+        if (wallHack){
+            snake[snake.length-1].snakeX = snake[snake.length-1].snakeX -size - snakeSize;
+        }
+        else{
+            gameOver = !gameOver;
+        }
+    }
+    if (snake[snake.length-1].snakeY < 0){
+        if (wallHack){
+            snake[snake.length-1].snakeY = snake[snake.length-1].snakeY + size + snakeSize;
+        }
+        else{
+            gameOver = !gameOver;
+        }
+
+    }
+    if (snake[snake.length-1].snakeY > size) {
+        if (wallHack){
+            snake[snake.length-1].snakeY = snake[snake.length-1].snakeY -size - snakeSize;
+        }
+        else{
+            gameOver = !gameOver;
+        }
     }
 
     for (var i = 0; i < snake.length -2; i++){
@@ -134,6 +171,7 @@ function timeout() {
 }
 function timeoutPowerUpp() {
     invert = !invert
+    wallHack = !wallHack;
 }
 
 function eatApple() {
@@ -163,10 +201,26 @@ function lost() {
 }
 function powerUpp() {
     if (snake[snake.length - 1].snakeX === posistionPowerUpp.powerUppX && snake[snake.length - 1].snakeY === posistionPowerUpp.powerUppY) {
-        console.log("test")
-        posistionPowerUpp.powerUppX = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
-        posistionPowerUpp.powerUppY = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
-        invert = !invert;
-        setTimeout(timeoutPowerUpp, 10000);
-    }
+
+        powerUppChoice =  Math.floor(Math.random() * Math.floor(1));
+    switch (powerUppChoice) {
+
+        case 0:
+            posistionPowerUpp.powerUppX = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
+            posistionPowerUpp.powerUppY = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
+            wallHack = !wallHack;
+            setTimeout(timeoutPowerUpp, 10000);
+            break;
+
+        case 1:
+                console.log("test")
+                posistionPowerUpp.powerUppX = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
+                posistionPowerUpp.powerUppY = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
+                invert = !invert;
+                setTimeout(timeoutPowerUpp, 10000);
+            break;
+
+    }}
+
+
 }
