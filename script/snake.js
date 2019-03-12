@@ -1,9 +1,12 @@
 var canvas,ctx,interval;
+var updateInterval = 10;
 var size = 500;
 var snake;
+var distanceMoved;
 var apple;
 var snakeSize;
 var directionX,directionY;
+var newDirectionX, newDirectionY;
 var gameOver;
 var cantMove = false;
 var posistionPowerUpp;
@@ -27,18 +30,21 @@ window.onload = function windowInit() {
      invert = false;
      gameOver = false;
      snake = [];
+     distanceMoved = 0;
      snakeSize = 20;
      directionX = snakeSize;
      directionY = 0;
+     newDirectionX = snakeSize;
+     newDirectionY = 0;
      posistionPowerUpp = {powerUppX: 200, powerUppY: 200};
-     apple = {appleX: 100, appleY: 100}
+     apple = {appleX: 100, appleY: 10}
 
 
     ctx.fillStyle = "#000000";
-    snake.push({snakeX: 0, snakeY: 0});
-    snake.unshift({snakeX: 20, snakeY: 20});
+    snake.push({snakeX: 0, snakeY: 0, directionX: directionX, directionY: directionY});
+    snake.unshift({snakeX: -snakeSize, snakeY: 0, directionX: directionX, directionY: directionY});
 
-    interval = window.setInterval(update,100)
+    interval = window.setInterval(update, updateInterval)
 
 }
 function update() {
@@ -75,19 +81,27 @@ function render() {
 
 }
 function updatePosition() {
+    for (var i = 0; i < snake.length - 1; i++){
+        snake[i] = {snakeX: snake[i].snakeX + snake[i].directionX/(1000/updateInterval)*10, snakeY: snake[i].snakeY + snake[i].directionY/(1000/updateInterval)*10, directionX: snake[i].directionX, directionY: snake[i].directionY};
 
+    }
+    snake[snake.length-1] = {snakeX: snake[snake.length-1].snakeX + directionX/(1000/updateInterval)*10, snakeY :snake[snake.length-1].snakeY + directionY/(1000/updateInterval)*10, directionX: directionX, directionY: directionY};
 
+    distanceMoved += (Math.abs(directionX) + Math.abs(directionY))/(1000/updateInterval)*10;
+    if(distanceMoved >= snakeSize) {
         for (var i = 0; i < snake.length - 1; i++){
-
-                snake[i] = snake[i + 1];
-
-        }
-            snake[snake.length-1] = {snakeX: snake[snake.length-1].snakeX + directionX, snakeY :snake[snake.length-1].snakeY + directionY};
-
-
-
+            snake[i] = {snakeX: snake[i].snakeX, snakeY: snake[i].snakeY, directionX: snake[i+1].directionX, directionY: snake[i+1].directionY};
 
         }
+        directionX = newDirectionX;
+        directionY = newDirectionY;
+        distanceMoved = 0;
+
+
+    }
+
+
+}
 function kolisionDetection() {
 
     if (snake[snake.length-1].snakeX < 0){
@@ -135,27 +149,27 @@ function KD(event) {
     console.log(event.keyCode);
     var keyPress = event.keyCode;
     if (keyPress === 40 && directionY !== (invert ? snakeSize: -snakeSize) && cantMove === false ) {
-        directionX = 0 ;
-        directionY =  invert ? -snakeSize: snakeSize;
+        newDirectionX = 0 ;
+        newDirectionY =  invert ? -snakeSize: snakeSize;
         cantMove = !cantMove;
         setTimeout(timeout, 100)
     }
     else if (keyPress === 38 && directionY !== (invert ? -snakeSize: snakeSize) && cantMove === false) {
-        directionX = 0;
-        directionY = invert ? snakeSize: -snakeSize;
+        newDirectionX = 0;
+        newDirectionY = invert ? snakeSize: -snakeSize;
         cantMove = !cantMove;
         setTimeout(timeout, 100)
     }
     else if (keyPress === 37 && directionX !== (invert ? -snakeSize: snakeSize) && cantMove === false) {
-        directionX = invert ? snakeSize: -snakeSize;
-        directionY = 0;
+        newDirectionX = invert ? snakeSize: -snakeSize;
+        newDirectionY = 0;
         cantMove = !cantMove;
         setTimeout(timeout, 100)
     }
 
     else if (keyPress === 39 && directionX !== (invert ? snakeSize : -snakeSize) && cantMove === false) {
-        directionX = invert ? -snakeSize: snakeSize;
-        directionY = 0;
+        newDirectionX = invert ? -snakeSize: snakeSize;
+        newDirectionY = 0;
         cantMove = !cantMove;
         setTimeout(timeout, 100)
     }
@@ -179,7 +193,7 @@ function eatApple() {
     if (snake[snake.length - 1].snakeX === apple.appleX && snake[snake.length - 1].snakeY === apple.appleY){
         apple.appleX = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
         apple.appleY = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
-        snake.unshift({snakeX: snake[0].snakeX, snakeY: snake[0].snakeY});
+        snake.unshift({snakeX: snake[0].snakeX-snake[0].directionX, snakeY: snake[0].snakeY-snake[0].directionY, directionX: snake[0].directionX, directionY: snake[0].directionY});
 
     }
 
