@@ -218,6 +218,10 @@ function lost() {
     }
 
 }
+function spawnPowerUpp() {
+    posistionPowerUpp.powerUppX = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
+    posistionPowerUpp.powerUppY = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
+}
 function powerUpp() {
     if (snake[snake.length - 1].snakeX === posistionPowerUpp.powerUppX && snake[snake.length - 1].snakeY === posistionPowerUpp.powerUppY) {
 
@@ -225,18 +229,20 @@ function powerUpp() {
     switch (powerUppChoice) {
 
         case 1:
-            posistionPowerUpp.powerUppX = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
-            posistionPowerUpp.powerUppY = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
+            posistionPowerUpp.powerUppX = -100;
+            posistionPowerUpp.powerUppY = -100;
             wallHack = true;
+            setTimeout(spawnPowerUpp, 10000);
             setTimeout(timeoutPowerUpp, 10000);
             break;
 
         case 2:
-                console.log("test")
-                posistionPowerUpp.powerUppX = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
-                posistionPowerUpp.powerUppY = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
-                invert = true;
-                setTimeout(timeoutPowerUpp, 10000);
+            console.log("test")
+            posistionPowerUpp.powerUppX = -100;
+            posistionPowerUpp.powerUppY = -100;
+            invert = true;
+            setTimeout(spawnPowerUpp, 10000);
+            setTimeout(timeoutPowerUpp, 10000);
             break;
 
     }}
