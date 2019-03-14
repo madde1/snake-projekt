@@ -104,41 +104,24 @@ function updatePosition() {
 }
 function kolisionDetection() {
     for (var i = 0; i < snake.length; i++) {
-        if (snake[i].snakeX < -snakeSize) {
-            if (wallHack || i !== snake.length - 1) {
+        if (wallHack) {
+            if (snake[i].snakeX < -snakeSize) {
                 snake[i].snakeX = snake[i].snakeX + size + snakeSize;
-                console.log(snake[i].snakeX);
             }
-            else {
-                gameOver = !gameOver;
-            }
-        }
-            if (snake[i].snakeX > size) {
-                if (wallHack) {
-                    snake[i].snakeX = snake[i].snakeX - size - snakeSize;
-                }
-                else {
-                    gameOver = !gameOver;
-                }
+            if (snake[i].snakeX > (size+snakeSize)) {
+                snake[i].snakeX = snake[i].snakeX - size - snakeSize
             }
             if (snake[i].snakeY < 0) {
-                if (wallHack) {
-                    snake[i].snakeY = snake[i].snakeY + size + snakeSize;
-                }
-                else {
-                    gameOver = !gameOver;
-                }
-
+                snake[i].snakeY = snake[i].snakeY + size + snakeSize
             }
-            if (snake[i].snakeY > size) {
-                if (wallHack) {
-                    snake[i].snakeY = snake[i].snakeY - size - snakeSize;
-                }
-                else {
-                    gameOver = !gameOver;
-                }
+            if (snake[i].snakeY > size+snakeSize) {
+                snake[i].snakeY = snake[i].snakeY - size - snakeSize;
             }
         }
+        else if(snake[snake.length-1].snakeX < 0 || snake[i].snakeX > size-snakeSize || snake[i].snakeY < 0 || snake[i].snakeY > size-snakeSize) {
+            gameOver = true;
+        }
+    }
 
     for (var i = 0; i < snake.length -2; i++){
         if (snake[snake.length-1].snakeX === snake[i].snakeX && snake[snake.length-1].snakeY === snake[i].snakeY){
