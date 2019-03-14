@@ -37,12 +37,12 @@ window.onload = function windowInit() {
      newDirectionX = snakeSize;
      newDirectionY = 0;
      posistionPowerUpp = {powerUppX: 200, powerUppY: 200};
-     apple = {appleX: 100, appleY: 10}
+     apple = {appleX: snakeSize, appleY: snakeSize}
 
 
     ctx.fillStyle = "#000000";
-    snake.push({snakeX: 0, snakeY: 0, directionX: directionX, directionY: directionY});
-    snake.unshift({snakeX: -snakeSize, snakeY: 0, directionX: directionX, directionY: directionY});
+    snake.push({snakeX: snakeSize, snakeY: 0, directionX: directionX, directionY: directionY});
+    snake.unshift({snakeX: 0, snakeY: 0, directionX: directionX, directionY: directionY});
 
     interval = window.setInterval(update, updateInterval)
 
@@ -103,46 +103,51 @@ function updatePosition() {
 
 }
 function kolisionDetection() {
+    for (var i = 0; i < snake.length; i++) {
+        if (snake[i].snakeX < -snakeSize) {
+            if (wallHack || i !== snake.length - 1) {
+                snake[i].snakeX = snake[i].snakeX + size + snakeSize;
+                console.log(snake[i].snakeX);
+            }
+            else {
+                gameOver = !gameOver;
+            }
+        }
+            if (snake[i].snakeX > size) {
+                if (wallHack) {
+                    snake[i].snakeX = snake[i].snakeX - size - snakeSize;
+                }
+                else {
+                    gameOver = !gameOver;
+                }
+            }
+            if (snake[i].snakeY < 0) {
+                if (wallHack) {
+                    snake[i].snakeY = snake[i].snakeY + size + snakeSize;
+                }
+                else {
+                    gameOver = !gameOver;
+                }
 
-    if (snake[snake.length-1].snakeX < 0){
-        if (wallHack){
-            snake[snake.length-1].snakeX = snake[snake.length-1].snakeX  + size + snakeSize;
+            }
+            if (snake[i].snakeY > size) {
+                if (wallHack) {
+                    snake[i].snakeY = snake[i].snakeY - size - snakeSize;
+                }
+                else {
+                    gameOver = !gameOver;
+                }
+            }
         }
-        else{
-            gameOver = !gameOver;
-        }
-    }
-    if (snake[snake.length-1].snakeX > size) {
-        if (wallHack){
-            snake[snake.length-1].snakeX = snake[snake.length-1].snakeX -size - snakeSize;
-        }
-        else{
-            gameOver = !gameOver;
-        }
-    }
-    if (snake[snake.length-1].snakeY < 0){
-        if (wallHack){
-            snake[snake.length-1].snakeY = snake[snake.length-1].snakeY + size + snakeSize;
-        }
-        else{
-            gameOver = !gameOver;
-        }
-
-    }
-    if (snake[snake.length-1].snakeY > size) {
-        if (wallHack){
-            snake[snake.length-1].snakeY = snake[snake.length-1].snakeY -size - snakeSize;
-        }
-        else{
-            gameOver = !gameOver;
-        }
-    }
 
     for (var i = 0; i < snake.length -2; i++){
         if (snake[snake.length-1].snakeX === snake[i].snakeX && snake[snake.length-1].snakeY === snake[i].snakeY){
             gameOver = !gameOver;
         }
     }
+
+
+
 }
 
 function KD(event) {
@@ -184,8 +189,8 @@ function timeout() {
     cantMove = !cantMove;
 }
 function timeoutPowerUpp() {
-    invert = !invert
-    wallHack = !wallHack;
+    invert = false;
+    wallHack = false;
 }
 
 function eatApple() {
@@ -216,21 +221,21 @@ function lost() {
 function powerUpp() {
     if (snake[snake.length - 1].snakeX === posistionPowerUpp.powerUppX && snake[snake.length - 1].snakeY === posistionPowerUpp.powerUppY) {
 
-        powerUppChoice =  Math.floor(Math.random() * Math.floor(1));
+        powerUppChoice =  Math.floor(Math.random() * 2) + 1;
     switch (powerUppChoice) {
 
-        case 0:
+        case 1:
             posistionPowerUpp.powerUppX = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
             posistionPowerUpp.powerUppY = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
-            wallHack = !wallHack;
+            wallHack = true;
             setTimeout(timeoutPowerUpp, 10000);
             break;
 
-        case 1:
+        case 2:
                 console.log("test")
                 posistionPowerUpp.powerUppX = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
                 posistionPowerUpp.powerUppY = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
-                invert = !invert;
+                invert = true;
                 setTimeout(timeoutPowerUpp, 10000);
             break;
 
