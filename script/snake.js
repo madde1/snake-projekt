@@ -1,6 +1,9 @@
 var canvas,ctx,interval;
 var updateInterval = 10;
 var size = 500;
+var scorePerSecond = 0.1;
+var scorePerApple = 10;
+var scorePerPowerUp = 20;
 var snake;
 var distanceMoved;
 var apple;
@@ -8,6 +11,7 @@ var snakeSize;
 var directionX,directionY;
 var newDirectionX, newDirectionY;
 var gameOver;
+var score = 0;
 var cantMove = false;
 var posistionPowerUpp;
 var invert;
@@ -29,6 +33,7 @@ window.onload = function windowInit() {
      wallHack = false;
      invert = false;
      gameOver = false;
+     score = 0;
      snake = [];
      distanceMoved = 0;
      snakeSize = 20;
@@ -58,6 +63,12 @@ function update() {
 }
 function render() {
     ctx.clearRect(0,0,size,size);
+
+    //Score text
+    ctx.font = "20px Arial";
+    ctx.textAlign = "right";
+    ctx.fillText("Score: " + Math.floor(score), size-10, 20);
+
     ctx.fillStyle= "#41FF00";
 
     ctx.fillRect(snake[snake.length-1].snakeX,snake[snake.length-1].snakeY,snakeSize,snakeSize);
@@ -89,9 +100,9 @@ function updatePosition() {
 
     distanceMoved += (Math.abs(directionX) + Math.abs(directionY))/(1000/updateInterval)*10;
     if(distanceMoved >= snakeSize) {
+        score += scorePerSecond;
         for (var i = 0; i < snake.length - 1; i++){
             snake[i] = {snakeX: snake[i].snakeX, snakeY: snake[i].snakeY, directionX: snake[i+1].directionX, directionY: snake[i+1].directionY};
-
         }
         directionX = newDirectionX;
         directionY = newDirectionY;
@@ -118,7 +129,7 @@ function kolisionDetection() {
                 snake[i].snakeY = snake[i].snakeY - size - snakeSize;
             }
         }
-        else if(snake[snake.length-1].snakeX < 0 || snake[i].snakeX > size-snakeSize || snake[i].snakeY < 0 || snake[i].snakeY > size-snakeSize) {
+        else if(snake[snake.length-1].snakeX < -10 || snake[i].snakeX > size-snakeSize || snake[i].snakeY < -10 || snake[i].snakeY > size-snakeSize) {
             gameOver = true;
         }
     }
@@ -182,7 +193,7 @@ function eatApple() {
         apple.appleX = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
         apple.appleY = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
         snake.unshift({snakeX: snake[0].snakeX-snake[0].directionX, snakeY: snake[0].snakeY-snake[0].directionY, directionX: snake[0].directionX, directionY: snake[0].directionY});
-
+        score += scorePerApple;
     }
 
 }
@@ -207,7 +218,7 @@ function spawnPowerUpp() {
 }
 function powerUpp() {
     if (snake[snake.length - 1].snakeX === posistionPowerUpp.powerUppX && snake[snake.length - 1].snakeY === posistionPowerUpp.powerUppY) {
-
+        score += scorePerPowerUp;
         powerUppChoice =  Math.floor(Math.random() * 2) + 1;
     switch (powerUppChoice) {
 
