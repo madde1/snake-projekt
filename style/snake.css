@@ -19,6 +19,8 @@ h1{
 }
 
 canvas{
+    position: absolute;
+    z-index: 1;
     border: 2px;
     border: black;
     border-style: solid;
@@ -33,7 +35,7 @@ canvas{
     color: white;
     cursor: pointer;
     padding: 18px;
-    width: 90%;
+    width: 100%;
     border: none;
     text-align: left;
     outline: none;
@@ -50,12 +52,55 @@ canvas{
     overflow: hidden;
     transition: max-height 0.2s ease-out;
     background-color: lavenderblush;
-    max-width: 400px;
 }
 .highScore{
     background-color: lavenderblush;
 }
 #snake{padding-top: 10px}
+
+
+#play-container {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+    display: flex;
+}
+#buttonDiv{
+    z-index: 10;
+    margin: auto auto;
+    border-radius: 40px;
+    border: darkgrey 40px solid;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr ;
+    grid-gap: 5px;
+}
+#playText{
+    margin: 0 5px;
+    grid-row: 1;
+    grid-column: 1;
+}
+#play {
+    margin: 0 auto 10px;
+    grid-row: 2;
+    grid-column: 1;
+    padding: 3px;
+    outline: none;
+    box-shadow: 0 0 0 transparent;
+    border: 0 solid transparent;
+    text-shadow: 0 0 0 transparent;
+
+}
+
+#play:hover {
+    background: gray;
+    box-shadow: 0px 0px 0px transparent;
+    border: 0px solid transparent;
+    text-shadow: 0px 0px 0px transparent;
+
+}
 #appleImg{
     display: none;
 }

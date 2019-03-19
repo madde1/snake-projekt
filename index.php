@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Created by PhpStorm.
  * User: simon
@@ -28,7 +28,13 @@
         </div>
     </div>
     <div class="item2">
-        <canvas id="canvas" width="500" height="500"></canvas>
+        <div id="play-container">
+            <div id="buttonDiv">
+                <p id="playText">Click play to start the game, Good Luck!</p>
+                <button id="play" onclick="init()">Play?</button>
+            </div>
+            <canvas id="canvas" width="500" height="500"></canvas>
+        </div>
     </div>
     <div class="item3">
         <h2>Meny</h2>

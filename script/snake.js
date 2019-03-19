@@ -18,6 +18,7 @@ var invert;
 var wallHack;
 var powerUppChoice;
 var appleImg = document.getElementById('appleImg');
+var playMenu = document.getElementById("buttonDiv");
 
 window.onload = function windowInit() {
     canvas = document.getElementById('canvas');
@@ -26,10 +27,12 @@ window.onload = function windowInit() {
     ctx.shadowColor = 'gray';
     ctx.shadowOffsetX = 2;
     ctx.shadowOffsetY = 2;
-    init()
+    //init()
 
-}
+};
+
  function init() {
+     playMenu.style.display = "none";
 
      wallHack = false;
      invert = false;
@@ -43,8 +46,7 @@ window.onload = function windowInit() {
      newDirectionX = snakeSize;
      newDirectionY = 0;
      posistionPowerUpp = {powerUppX: 200, powerUppY: 200};
-     apple = {appleX: snakeSize, appleY: snakeSize}
-
+	apple= {appleX: snakeSize, appleY: snakeSize}
 
     ctx.fillStyle = "#000000";
     snake.push({snakeX: snakeSize, snakeY: 0, directionX: directionX, directionY: directionY});
@@ -80,7 +82,7 @@ function render() {
         ctx.fillRect(snake[i].snakeX ,snake[i].snakeY ,snakeSize,snakeSize);
     }
     ctx.fillStyle= "#e60a00";
-    ctx.drawImage(appleImg,apple.appleX,apple.appleY ,snakeSize,snakeSize);
+	ctx.drawImage(appleImg,apple.appleX,apple.appleY ,snakeSize,snakeSize);
     ctx.fillStyle= "#ffda00";
 
     ctx.fillRect(posistionPowerUpp.powerUppX,posistionPowerUpp.powerUppY,snakeSize,snakeSize);
@@ -203,13 +205,18 @@ function lost() {
 
     if (gameOver){
         ctx.clearRect(0,0,size,size);
+        wallHack = false;
+        invert = false;
+        playMenu.style.display = 'grid';
+        document.getElementById("playText").textContent = "Game Over!";
+        document.getElementById("play").textContent= "Play again?";
 
         clearInterval(interval);
         ctx.fillStyle = '#eee8d5';
-        ctx.font = '40px serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('Refresh to play again', size / 2, size/ 2);
-        init();
+        //ctx.font = '40px serif';
+        //ctx.textAlign = 'center';
+        //ctx.fillText('Refresh to play again', size / 2, size/ 2);
+        //init();
     }
 
 }

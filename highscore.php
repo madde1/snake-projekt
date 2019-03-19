@@ -1,6 +1,6 @@
 <?php
 //ta bort lösenordet
-    $link = mysqli_connect("localhost", "root", "Polemistis321", "Highscore");
+    $link = mysqli_connect("localhost", "root", "", "Highscore");
 
     if (mysqli_connect_error()){
         die ("Error! Can't connect");
