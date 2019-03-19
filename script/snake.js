@@ -17,6 +17,7 @@ var posistionPowerUpp;
 var invert;
 var wallHack;
 var powerUppChoice;
+var appleImg = document.getElementById('appleImg');
 
 window.onload = function windowInit() {
     canvas = document.getElementById('canvas');
@@ -79,7 +80,7 @@ function render() {
         ctx.fillRect(snake[i].snakeX ,snake[i].snakeY ,snakeSize,snakeSize);
     }
     ctx.fillStyle= "#e60a00";
-    ctx.fillRect(apple.appleX,apple.appleY ,snakeSize,snakeSize);
+    ctx.drawImage(appleImg,apple.appleX,apple.appleY ,snakeSize,snakeSize);
     ctx.fillStyle= "#ffda00";
 
     ctx.fillRect(posistionPowerUpp.powerUppX,posistionPowerUpp.powerUppY,snakeSize,snakeSize);

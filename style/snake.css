@@ -56,3 +56,6 @@ canvas{
     background-color: lavenderblush;
 }
 #snake{padding-top: 10px}
+#appleImg{
+    display: none;
+}

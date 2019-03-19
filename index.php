@@ -17,7 +17,7 @@
     <link href="style/snake.css" type="text/css" rel="stylesheet">
 </head>
 <body onkeydown="KD(event)">
-
+<img src="img/apple.png" id="appleImg">
 <h1>Lady Snake</h1>
 
 <div class="grid">
