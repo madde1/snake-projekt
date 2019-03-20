@@ -41,17 +41,22 @@
         <button class="collapsible">Regler</button>
         <div class="content">
             <ul>
-                <li>10 poäng för varje äpple.</li>
-                <li>Powerups varar i 10 sekunder</li>
-                <li>-</li>
-                <li>-</li>
-                <li>-</li>
+                <ul>
+                    <li>10 poäng för varje äpple.</li>
+                    <li>Powerups varar i 10 sekunder</li>
+                    <li>Åker man in i en vägg dör man</li>
+                    <li>Det kan aldrig vara mer än 1 powerup på spelplanen samtidigt.</li>
+                </ul>
             </ul>
         </div>
         <button class="collapsible">PowerUps</button>
         <div class="content">
-            <p>Tjabba</p>
+            <p>Wallhack - Ormen kan åka genom väggarna</p>
         </div>
+    </div> <button class="collapsible">Styra Ormen</button>
+    <div class="content">
+        <p>För att styra ormen används tangenterna W A S D</p>
+    </div>
 
         <img id="snake" src="snake.png" width="300" height="200">
     </div>
