@@ -112,7 +112,7 @@ h2{font-family: 'Luckiest Guy', cursive;}
     text-shadow: 0px 0px 0px transparent;
 
 }
-#appleImg{
+#appleImg, #backgroundImg{
     display: none;
 }
 .item2{

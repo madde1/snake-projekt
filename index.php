@@ -18,6 +18,7 @@
 </head>
 <body onkeydown="KD(event)">
 <img src="img/apple.png" id="appleImg">
+<img src="img/background.jpg" id="backgroundImg">
 <h1>Lady Snake</h1>
 
 <div class="grid">
