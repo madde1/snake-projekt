@@ -76,12 +76,11 @@ function render() {
     ctx.clearRect(0,0,size,size);
     ctx.drawImage(backgroundImg,0,0,size,size);
     //Score text
-    ctx.font = "20px Arial";
+    ctx.font = "25px Luckiest Guy";
     ctx.textAlign = "right";
     ctx.fillText("Score: " + Math.floor(score), size-10, 20);
 
     ctx.fillStyle= "#41FF00";
-    ctx.drawImage(backgroundImg,0,0,size,size);
 
     if (newDirectionX === snakeSize){
         ctx.drawImage(snakeHeadRight,snake[snake.length-1].snakeX,snake[snake.length-1].snakeY,snakeSize,snakeSize);
