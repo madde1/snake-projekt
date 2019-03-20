@@ -18,11 +18,14 @@ var invert;
 var wallHack;
 var powerUppChoice;
 var appleImg = document.getElementById('appleImg');
+
 var snakeHeadUpp = document.getElementById('snakeHeadUpp');
 var snakeHeadRight = document.getElementById('snakeHeadRight');
 var snakeHeadDown = document.getElementById('snakeHeadDown');
 var snakeHeadLeft = document.getElementById('snakeHeadLeft');
 var snakeBody = document.getElementById('snakeBody');
+var backgroundImg = document.getElementById('backgroundImg');
+
 var playMenu = document.getElementById("buttonDiv");
 
 window.onload = function windowInit() {
@@ -71,13 +74,14 @@ function update() {
 }
 function render() {
     ctx.clearRect(0,0,size,size);
-
+    ctx.drawImage(backgroundImg,0,0,size,size);
     //Score text
     ctx.font = "20px Arial";
     ctx.textAlign = "right";
     ctx.fillText("Score: " + Math.floor(score), size-10, 20);
 
     ctx.fillStyle= "#41FF00";
+    ctx.drawImage(backgroundImg,0,0,size,size);
 
     if (newDirectionX === snakeSize){
         ctx.drawImage(snakeHeadRight,snake[snake.length-1].snakeX,snake[snake.length-1].snakeY,snakeSize,snakeSize);
@@ -210,8 +214,12 @@ function timeoutPowerUpp() {
 function eatApple() {
 
     if (snake[snake.length - 1].snakeX === apple.appleX && snake[snake.length - 1].snakeY === apple.appleY){
-        apple.appleX = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
-        apple.appleY = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
+        let applePosition;
+        do {
+            applePosition = getRandomLocation(false, true);
+        }while (applePosition.x < 0)
+        apple.appleX = applePosition.x;
+        apple.appleY = applePosition.y;
         snake.unshift({snakeX: snake[0].snakeX-snake[0].directionX, snakeY: snake[0].snakeY-snake[0].directionY, directionX: snake[0].directionX, directionY: snake[0].directionY});
         score += scorePerApple;
     }
@@ -238,8 +246,12 @@ function lost() {
 
 }
 function spawnPowerUpp() {
-    posistionPowerUpp.powerUppX = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
-    posistionPowerUpp.powerUppY = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
+    let powerUpPosition;
+    do {
+        powerUpPosition = getRandomLocation(false, true);
+    }while (powerUpPosition.x < 0)
+    posistionPowerUpp.powerUppX = powerUpPosition.x;
+    posistionPowerUpp.powerUppY = powerUpPosition.y;
 }
 function powerUpp() {
     if (snake[snake.length - 1].snakeX === posistionPowerUpp.powerUppX && snake[snake.length - 1].snakeY === posistionPowerUpp.powerUppY) {
@@ -267,4 +279,25 @@ function powerUpp() {
     }}
 
 
+}
+
+function getRandomLocation(checkForApple, checkForPowerUp) {
+    var x = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
+    var y = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
+    for(var i = 0; i < snake.length; i++) {
+        if(x === snake[i].snakeX && y === snake[i].snakeY) {
+            return {x:-100, y:-100};
+        }
+    }
+    if(checkForApple) {
+        if(x === apple.appleX && y === apple.appleY) {
+            return {x:-100, y:-100};
+        }
+    }
+    if(checkForPowerUp) {
+        if(x === posistionPowerUpp.powerUppX && y === posistionPowerUpp.powerUppY) {
+            return {x:-100, y:-100};
+        }
+    }
+    return {x:x, y:y};
 }
