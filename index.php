@@ -17,6 +17,12 @@
     <link href="style/snake.css" type="text/css" rel="stylesheet">
 </head>
 <body onkeydown="KD(event)">
+<?php include "highscore.php"?>
+<img src="img/snakeHeadUpp.png" id="snakeHeadUpp">
+<img src="img/snakeHeadRight.png" id="snakeHeadRight">
+<img src="img/snakeHeadDown.png" id="snakeHeadDown">
+<img src="img/snakeHeadLeft.png" id="snakeHeadLeft">
+<img src="img/snakeBody.png" id="snakeBody">
 <img src="img/apple.png" id="appleImg">
 <h1>Lady Snake</h1>
 
@@ -24,7 +30,6 @@
     <div class="item1">
         <div class="highScore">
             <h2>High Score</h2>
-            <?php include"highscore.php";?>
         </div>
     </div>
     <div class="item2">

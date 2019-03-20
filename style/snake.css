@@ -104,3 +104,18 @@ canvas{
 #appleImg{
     display: none;
 }
+#snakeHeadUpp{
+    display: none;
+}
+#snakeHeadRight{
+    display: none;
+}
+#snakeHeadDown{
+    display: none;
+}
+#snakeHeadLeft{
+    display: none;
+}
+#snakeBody{
+    display: none;
+}

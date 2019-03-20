@@ -18,6 +18,11 @@ var invert;
 var wallHack;
 var powerUppChoice;
 var appleImg = document.getElementById('appleImg');
+var snakeHeadUpp = document.getElementById('snakeHeadUpp');
+var snakeHeadRight = document.getElementById('snakeHeadRight');
+var snakeHeadDown = document.getElementById('snakeHeadDown');
+var snakeHeadLeft = document.getElementById('snakeHeadLeft');
+var snakeBody = document.getElementById('snakeBody');
 var playMenu = document.getElementById("buttonDiv");
 
 window.onload = function windowInit() {
@@ -74,12 +79,24 @@ function render() {
 
     ctx.fillStyle= "#41FF00";
 
-    ctx.fillRect(snake[snake.length-1].snakeX,snake[snake.length-1].snakeY,snakeSize,snakeSize);
+    if (newDirectionX === snakeSize){
+        ctx.drawImage(snakeHeadRight,snake[snake.length-1].snakeX,snake[snake.length-1].snakeY,snakeSize,snakeSize);
+
+    }
+    if (newDirectionX == -snakeSize) {
+        ctx.drawImage(snakeHeadLeft, snake[snake.length - 1].snakeX, snake[snake.length - 1].snakeY, snakeSize, snakeSize);
+    }
+    if (newDirectionY == snakeSize) {
+        ctx.drawImage(snakeHeadDown, snake[snake.length - 1].snakeX, snake[snake.length - 1].snakeY, snakeSize, snakeSize);
+    }
+    if (newDirectionY == -snakeSize) {
+        ctx.drawImage(snakeHeadUpp, snake[snake.length - 1].snakeX, snake[snake.length - 1].snakeY, snakeSize, snakeSize);
+    }
 
     for (var i = 0; i < snake.length-1; i++){
         ctx.fillStyle= "#e61dcb";
 
-        ctx.fillRect(snake[i].snakeX ,snake[i].snakeY ,snakeSize,snakeSize);
+        ctx.drawImage(snakeBody,snake[i].snakeX ,snake[i].snakeY ,snakeSize,snakeSize);
     }
     ctx.fillStyle= "#e60a00";
 	ctx.drawImage(appleImg,apple.appleX,apple.appleY ,snakeSize,snakeSize);
