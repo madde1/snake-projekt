@@ -8,6 +8,7 @@ var snake;
 var distanceMoved;
 var apple;
 var snakeSize;
+var snakeHeadExtraSize = 10;
 var directionX,directionY;
 var newDirectionX, newDirectionY;
 var gameOver;
@@ -17,6 +18,7 @@ var posistionPowerUpp;
 var invert;
 var wallHack;
 var powerUppChoice;
+var spawnPowerUpTimer;
 var appleImg = document.getElementById('appleImg');
 
 var snakeHeadUpp = document.getElementById('snakeHeadUpp');
@@ -31,8 +33,8 @@ var playMenu = document.getElementById("buttonDiv");
 window.onload = function windowInit() {
     canvas = document.getElementById('canvas');
     ctx = canvas.getContext('2d');
-    ctx.shadowBlur = 4;
-    ctx.shadowColor = 'gray';
+    ctx.shadowBlur = 2;
+    ctx.shadowColor = 'black';
     ctx.shadowOffsetX = 2;
     ctx.shadowOffsetY = 2;
     //init()
@@ -45,28 +47,29 @@ window.onload = function windowInit() {
      wallHack = false;
      invert = false;
      gameOver = false;
-     score = 0;
      snake = [];
      distanceMoved = 0;
-     snakeSize = 20;
+     snakeSize = 30;
      directionX = snakeSize;
      directionY = 0;
      newDirectionX = snakeSize;
      newDirectionY = 0;
-     posistionPowerUpp = {powerUppX: 200, powerUppY: 200};
-	apple= {appleX: snakeSize, appleY: snakeSize}
-
+    window.clearInterval(spawnPowerUpTimer);
+     posistionPowerUpp = {powerUppX: 10*snakeSize, powerUppY: 10*snakeSize};
+     apple= {appleX: getRandomLocation().x, appleY: getRandomLocation().y};
     ctx.fillStyle = "#000000";
     snake.push({snakeX: snakeSize, snakeY: 0, directionX: directionX, directionY: directionY});
     snake.unshift({snakeX: 0, snakeY: 0, directionX: directionX, directionY: directionY});
 
+     eatApple();
+     score = 0;
     interval = window.setInterval(update, updateInterval)
 
 }
 function update() {
     render();
     kolisionDetection();
-    eatApple();
+    checkEatApple();
     powerUpp();
     updatePosition();
     lost();
@@ -76,52 +79,51 @@ function render() {
     ctx.clearRect(0,0,size,size);
     ctx.drawImage(backgroundImg,0,0,size,size);
     //Score text
-    ctx.font = "25px Luckiest Guy";
+    ctx.font = "30px Luckiest Guy";
     ctx.textAlign = "right";
-    ctx.fillText("Score: " + Math.floor(score), size-10, 20);
+    ctx.fillText("Score: " + Math.floor(score), size-10, 30);
 
     ctx.fillStyle= "#41FF00";
 
-    if (newDirectionX === snakeSize){
-        ctx.drawImage(snakeHeadRight,snake[snake.length-1].snakeX,snake[snake.length-1].snakeY,snakeSize,snakeSize);
-
-    }
-    if (newDirectionX == -snakeSize) {
-        ctx.drawImage(snakeHeadLeft, snake[snake.length - 1].snakeX, snake[snake.length - 1].snakeY, snakeSize, snakeSize);
-    }
-    if (newDirectionY == snakeSize) {
-        ctx.drawImage(snakeHeadDown, snake[snake.length - 1].snakeX, snake[snake.length - 1].snakeY, snakeSize, snakeSize);
-    }
-    if (newDirectionY == -snakeSize) {
-        ctx.drawImage(snakeHeadUpp, snake[snake.length - 1].snakeX, snake[snake.length - 1].snakeY, snakeSize, snakeSize);
-    }
-
-    for (var i = 0; i < snake.length-1; i++){
-        ctx.fillStyle= "#e61dcb";
-
-        ctx.drawImage(snakeBody,snake[i].snakeX ,snake[i].snakeY ,snakeSize,snakeSize);
-    }
     ctx.fillStyle= "#e60a00";
-	ctx.drawImage(appleImg,apple.appleX,apple.appleY ,snakeSize,snakeSize);
+    ctx.drawImage(appleImg,apple.appleX-3,apple.appleY-3, snakeSize+6, snakeSize+6);
     ctx.fillStyle= "#ffda00";
 
     ctx.fillRect(posistionPowerUpp.powerUppX,posistionPowerUpp.powerUppY,snakeSize,snakeSize);
 
+    var snakeHead;
+    if (newDirectionX === snakeSize){
+        snakeHead = snakeHeadRight;
+    }
+    if (newDirectionX == -snakeSize) {
+        snakeHead = snakeHeadLeft;
+    }
+    if (newDirectionY == snakeSize) {
+        snakeHead = snakeHeadDown;
+    }
+    if (newDirectionY == -snakeSize) {
+        snakeHead = snakeHeadUpp;
+    }
+
+    ctx.drawImage(snakeHead, snake[snake.length - 1].snakeX-snakeHeadExtraSize/2, snake[snake.length - 1].snakeY-snakeHeadExtraSize/2,
+        snakeSize+snakeHeadExtraSize, snakeSize+snakeHeadExtraSize);
+
+    for (var i = 0; i < snake.length-1; i++){
+        ctx.fillStyle= "#e61dcb";
+
+        ctx.drawImage(snakeBody,snake[i].snakeX ,snake[i].snakeY, snakeSize, snakeSize);
+    }
+
     ctx.fillStyle= "#000000";
-
-
-
-
-
 }
 function updatePosition() {
     for (var i = 0; i < snake.length - 1; i++){
-        snake[i] = {snakeX: snake[i].snakeX + snake[i].directionX/(1000/updateInterval)*10, snakeY: snake[i].snakeY + snake[i].directionY/(1000/updateInterval)*10, directionX: snake[i].directionX, directionY: snake[i].directionY};
+        snake[i] = {snakeX: snake[i].snakeX + snake[i].directionX/getSpeed(), snakeY: snake[i].snakeY + snake[i].directionY/getSpeed(), directionX: snake[i].directionX, directionY: snake[i].directionY};
 
     }
-    snake[snake.length-1] = {snakeX: snake[snake.length-1].snakeX + directionX/(1000/updateInterval)*10, snakeY :snake[snake.length-1].snakeY + directionY/(1000/updateInterval)*10, directionX: directionX, directionY: directionY};
+    snake[snake.length-1] = {snakeX: snake[snake.length-1].snakeX + directionX/getSpeed(), snakeY :snake[snake.length-1].snakeY + directionY/getSpeed(), directionX: directionX, directionY: directionY};
 
-    distanceMoved += (Math.abs(directionX) + Math.abs(directionY))/(1000/updateInterval)*10;
+    distanceMoved += (Math.abs(directionX) + Math.abs(directionY))/getSpeed();
     if(distanceMoved >= snakeSize) {
         score += scorePerSecond;
         for (var i = 0; i < snake.length - 1; i++){
@@ -130,8 +132,6 @@ function updatePosition() {
         directionX = newDirectionX;
         directionY = newDirectionY;
         distanceMoved = 0;
-
-
     }
 
 
@@ -157,7 +157,7 @@ function kolisionDetection() {
         }
     }
 
-    for (var i = 0; i < snake.length -2; i++){
+    for (var i = 1; i < snake.length -2; i++){
         if (snake[snake.length-1].snakeX === snake[i].snakeX && snake[snake.length-1].snakeY === snake[i].snakeY){
             gameOver = !gameOver;
         }
@@ -168,7 +168,7 @@ function kolisionDetection() {
 }
 
 function KD(event) {
-    console.log(event.keyCode);
+    //console.log(event.keyCode);
     var keyPress = event.keyCode;
     if (keyPress === 40 && directionY !== (invert ? snakeSize: -snakeSize) && cantMove === false ) {
         newDirectionX = 0 ;
@@ -195,12 +195,6 @@ function KD(event) {
         cantMove = !cantMove;
         setTimeout(timeout, 100)
     }
-    console.log(invert ? snakeSize : -snakeSize)
-    if (console.log(directionX !== invert ? snakeSize : -snakeSize)){
-        console.log("test")
-    }
-
-
 }
 function timeout() {
     cantMove = !cantMove;
@@ -210,19 +204,21 @@ function timeoutPowerUpp() {
     wallHack = false;
 }
 
-function eatApple() {
-
+function checkEatApple() {
     if (snake[snake.length - 1].snakeX === apple.appleX && snake[snake.length - 1].snakeY === apple.appleY){
-        let applePosition;
-        do {
-            applePosition = getRandomLocation(false, true);
-        }while (applePosition.x < 0)
-        apple.appleX = applePosition.x;
-        apple.appleY = applePosition.y;
-        snake.unshift({snakeX: snake[0].snakeX-snake[0].directionX, snakeY: snake[0].snakeY-snake[0].directionY, directionX: snake[0].directionX, directionY: snake[0].directionY});
-        score += scorePerApple;
+        eatApple();
     }
+}
 
+function eatApple() {
+    let applePosition;
+    do {
+        applePosition = getRandomLocation(false, true);
+    }while (applePosition.x < 0)
+    apple.appleX = applePosition.x;
+    apple.appleY = applePosition.y;
+    snake.unshift({snakeX: snake[0].snakeX-snake[0].directionX, snakeY: snake[0].snakeY-snake[0].directionY, directionX: snake[0].directionX, directionY: snake[0].directionY});
+    score += scorePerApple;
 }
 
 function lost() {
@@ -247,7 +243,7 @@ function lost() {
 function spawnPowerUpp() {
     let powerUpPosition;
     do {
-        powerUpPosition = getRandomLocation(false, true);
+        powerUpPosition = getRandomLocation(true, false);
     }while (powerUpPosition.x < 0)
     posistionPowerUpp.powerUppX = powerUpPosition.x;
     posistionPowerUpp.powerUppY = powerUpPosition.y;
@@ -262,7 +258,7 @@ function powerUpp() {
             posistionPowerUpp.powerUppX = -100;
             posistionPowerUpp.powerUppY = -100;
             wallHack = true;
-            setTimeout(spawnPowerUpp, 10000);
+            spawnPowerUpTimer = setTimeout(spawnPowerUpp, 10000);
             setTimeout(timeoutPowerUpp, 10000);
             break;
 
@@ -271,7 +267,7 @@ function powerUpp() {
             posistionPowerUpp.powerUppX = -100;
             posistionPowerUpp.powerUppY = -100;
             invert = true;
-            setTimeout(spawnPowerUpp, 10000);
+            spawnPowerUpTimer = setTimeout(spawnPowerUpp, 10000);
             setTimeout(timeoutPowerUpp, 10000);
             break;
 
@@ -281,8 +277,8 @@ function powerUpp() {
 }
 
 function getRandomLocation(checkForApple, checkForPowerUp) {
-    var x = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
-    var y = Math.floor(Math.random() * Math.floor(24.5)) * snakeSize;
+    var x = Math.floor(Math.random() * Math.floor(size/snakeSize)) * snakeSize;
+    var y = Math.floor(Math.random() * Math.floor(size/snakeSize)) * snakeSize;
     for(var i = 0; i < snake.length; i++) {
         if(x === snake[i].snakeX && y === snake[i].snakeY) {
             return {x:-100, y:-100};
@@ -299,4 +295,8 @@ function getRandomLocation(checkForApple, checkForPowerUp) {
         }
     }
     return {x:x, y:y};
+}
+
+function getSpeed() {
+    return snakeSize/2;
 }
