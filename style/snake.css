@@ -137,3 +137,12 @@ h2{font-family: 'Luckiest Guy', cursive;}
 }
 .item3{width: 350px;}
 .item1{width: 350px;}
+
+#snake {
+    display: none;
+    max-width: 100%;
+    max-height: 100%;
+}
+#return{
+    margin: 0 auto;
+}
