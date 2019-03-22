@@ -29,7 +29,48 @@ canvas{
     display: block;
 }
 h2{font-family: 'Luckiest Guy', cursive;}
+#startPage{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    text-align: center;
+    margin-top: 300px;
 
+}
+#formH1{ font-family: 'Luckiest Guy', cursive;
+    text-align: center;
+    font-size: 60px;
+    text-shadow: 2px 2px lightcoral;
+    background-color: lavenderblush;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+
+}
+#startForm{
+    width: 300px;
+    border: 2px solid lightgrey;
+    background-color: lightpink;
+    height: 200px;
+}
+#formInput{
+    border-radius: 30px;
+    height: 50px;
+    padding-left: 5px;
+
+}
+#snakeButton{
+    width: 300px;
+    height: 200px;
+    font-size: 50px;
+    background-color: lavenderblush;
+
+}
+#pongButton{
+    margin-left: 200px;
+    width: 300px;
+    height: 200px;
+    font-size: 50px;
+    background-color: lavenderblush;
+}
 .collapsible {
     grid-row-start: 3;
     background-color: lightcoral;
