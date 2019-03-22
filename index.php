@@ -70,10 +70,7 @@
             <button class="collapsible">PowerUps</button>
             <div class="content">
                 <p>Wallhack - Ormen kan åka genom väggarna</p>
-            </div>
-            <button class="collapsible">Styra Ormen</button>
-            <div class="content">
-                <p>För att styra ormen används tangenterna W A S D</p>
+                <p>Invert -</p>
             </div>
             <img id="snakeImg" src="snake.png" width="300" height="200">
         </div>
