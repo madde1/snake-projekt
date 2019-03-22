@@ -38,6 +38,11 @@
                 <h2>High Score</h2>
                 <?php include"highscore.php";?>
             </div>
+            <div id="styraOrmen">
+                <h2>Styra Ormen</h2>
+                <p>Använd tangenterna WASD för att styra ormen</p>
+            </div>
+            <img id="wasdImg" src="wasd.jpg" width="350" height="200">
         </div>
 
         <div class="item2">

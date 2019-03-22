@@ -28,7 +28,8 @@ canvas{
     margin-right: auto;
     display: block;
 }
-h2{font-family: 'Luckiest Guy', cursive;}
+h2{font-family: 'Luckiest Guy', cursive;
+    text-shadow: 2px 2px lightcoral;}
 #startPage{
     display: grid;
     grid-template-columns: auto auto auto;
@@ -55,6 +56,7 @@ h2{font-family: 'Luckiest Guy', cursive;}
     border-radius: 30px;
     height: 50px;
     padding-left: 5px;
+    font-size: 20px;
 
 }
 #snakeButton{
@@ -62,7 +64,8 @@ h2{font-family: 'Luckiest Guy', cursive;}
     height: 200px;
     font-size: 50px;
     background-color: lavenderblush;
-
+    text-shadow: 2px 2px lightcoral;
+    font-family: 'Luckiest Guy', cursive;
 }
 #pongButton{
     margin-left: 200px;
@@ -70,6 +73,8 @@ h2{font-family: 'Luckiest Guy', cursive;}
     height: 200px;
     font-size: 50px;
     background-color: lavenderblush;
+    text-shadow: 2px 2px lightcoral;
+    font-family: 'Luckiest Guy', cursive;
 }
 .collapsible {
     grid-row-start: 3;
@@ -83,7 +88,7 @@ h2{font-family: 'Luckiest Guy', cursive;}
     outline: none;
     font-size: 15px;
     font-family: 'Luckiest Guy', cursive;
-
+    text-shadow: 2px 2px black;
 }
 
 .active, .collapsible:hover {
@@ -100,9 +105,9 @@ h2{font-family: 'Luckiest Guy', cursive;}
 .highScore{
     background-color: lavenderblush;
     font-family: 'Luckiest Guy', cursive;
+    padding-left: 10px;
+    height: 150px;
 }
-#snake{padding-top: 10px}
-
 
 #play-container {
     position: relative;
@@ -137,17 +142,17 @@ h2{font-family: 'Luckiest Guy', cursive;}
     outline: none;
     box-shadow: 0 0 0 transparent;
     border: 0 solid transparent;
-    text-shadow: 0 0 0 transparent;
     font-family: 'Luckiest Guy', cursive;
     width: 120px;
     height: 60px;
-    background: lavenderblush;
+    background: darkseagreen;
     font-size: 20px;
+    text-shadow: 2px 2px green;
 
 }
 
 #play:hover {
-    background: gray;
+    background: green;
     box-shadow: 0px 0px 0px transparent;
     border: 0px solid transparent;
     text-shadow: 0px 0px 0px transparent;
@@ -177,7 +182,8 @@ h2{font-family: 'Luckiest Guy', cursive;}
     width: 800px;
 }
 .item3{width: 350px;}
-.item1{width: 350px;}
+.item1{width: 350px;
+    margin-left: 10px}
 
 #snake {
     display: none;
@@ -185,5 +191,23 @@ h2{font-family: 'Luckiest Guy', cursive;}
     max-height: 100%;
 }
 #return{
-    margin: 0 auto;
+    background-color: red;
+    color: white;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    height: 40px;
+    box-shadow: red;
+    font-family: 'Luckiest Guy', cursive;
+    text-shadow: 2px 2px black;
+}
+#return:hover{
+    background-color: rosybrown;
+}
+#styraOrmen{
+    background-color: lavenderblush;
+    font-family: 'Luckiest Guy', cursive;
+    padding-left: 10px;
+}
+#snakeImg{
+    margin-top: 15px;
 }
