@@ -8,6 +8,7 @@ var snake;
 var distanceMoved;
 var apple;
 var snakeSize;
+var shouldGrow = false;
 var snakeHeadExtraSize = 10;
 var directionX,directionY;
 var newDirectionX, newDirectionY;
@@ -49,6 +50,7 @@ window.onload = function windowInit() {
      gameOver = false;
      snake = [];
      distanceMoved = 0;
+     shouldGrow = false;
      snakeSize = 30;
      directionX = snakeSize;
      directionY = 0;
@@ -132,6 +134,12 @@ function updatePosition() {
         directionX = newDirectionX;
         directionY = newDirectionY;
         distanceMoved = 0;
+        if(shouldGrow) {
+            setTimeout(new function () {
+            snake.unshift({snakeX: snake[0].snakeX-snake[0].directionX, snakeY: snake[0].snakeY-snake[0].directionY, directionX: snake[0].directionX, directionY: snake[0].directionY});
+            }, getSpeed()*updateInterval);
+            shouldGrow = false;
+        }
     }
 
 
@@ -217,7 +225,7 @@ function eatApple() {
     }while (applePosition.x < 0)
     apple.appleX = applePosition.x;
     apple.appleY = applePosition.y;
-    snake.unshift({snakeX: snake[0].snakeX-snake[0].directionX, snakeY: snake[0].snakeY-snake[0].directionY, directionX: snake[0].directionX, directionY: snake[0].directionY});
+    shouldGrow = true;
     score += scorePerApple;
 }
 
