@@ -15,6 +15,8 @@
     <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
     <title>Lady Snake</title>
     <link href="style/snake.css" type="text/css" rel="stylesheet">
+    <link href="style/menu.css" type="text/css" rel="stylesheet">
+    <link href="style/pong.css" type="text/css" rel="stylesheet">
 </head>
 <body onkeydown="KD(event)">
 <section>
@@ -36,23 +38,22 @@
         <div class="item1">
             <div class="highScore">
                 <h2>High Score</h2>
-                <?php include"highscore.php";?>
             </div>
             <div id="styraOrmen">
                 <h2>Styra Ormen</h2>
                 <p>Använd tangenterna WASD för att styra ormen</p>
             </div>
-            <img id="wasdImg" src="wasd.png" width="350" height="200">
+            <img id="wasdImg" src="img/wasd.png" width="350" height="200">
         </div>
 
         <div class="item2">
-            <div id="play-container">
-                <div id="buttonDiv">
-                    <p id="playText">Click play to start the game, Good Luck!</p>
-                    <button id="play" onclick="init()">Play?</button>
+            <div id="snake-play-container">
+                <div id="snake-buttonDiv">
+                    <p id="snake-playText">Click play to start the game, Good Luck!</p>
+                    <button id="snake-play" onclick="snakeInit()">Play?</button>
                 </div>
                 <img src="img/apple.png" id="appleImg">
-                <canvas id="canvas" width="500" height="500"></canvas>
+                <canvas id="snakeCanvas" width="500" height="500"></canvas>
             </div>
         </div>
 
@@ -72,7 +73,7 @@
                 <p>Wallhack - Ormen kan åka genom väggarna</p>
                 <p>Invert -</p>
             </div>
-            <img id="snakeImg" src="snake.png" width="300" height="200">
+            <img id="snakeImg" src="img/snake.png" width="300" height="200">
         </div>
     </div>
     <img src="img/snakeHeadUpp.png" id="snakeHeadUpp">
@@ -84,11 +85,49 @@
     <img src="img/background.jpg" id="backgroundImg">
 </div>
 
-<div id="pong">
 
+
+<div id="pong">
+    <h1>Pong</h1>
+    <button class="Return" onclick="stopPong()">Return to main page</button>
+    <div class="grid">
+
+        <div class="pong-item1">
+            <div class="highScore">
+                <h2>High Score</h2>
+            </div>
+        </div>
+
+        <div class="pong-item2">
+            <div id="pong-play-container">
+                <div id="pong-Menu">
+                    <p id="pong-playText">Click play to start the game, Good Luck!</p>
+                    <button id="pong-Play" onclick="pongInit()">Play?</button>
+                </div>
+                <canvas id="pongCanvas" width="500" height="500"></canvas>
+            </div>
+        </div>
+
+        <div class="pong-item3">
+            <h2>Meny</h2>
+            <button class="collapsible">Regler</button>
+            <div class="content">
+                <ul>
+                </ul>
+            </div>
+            <button class="collapsible"></button>
+            <div class="content">
+
+            </div>
+        </div>
+    </div>
+    <img src="img/heart.png" id="playerFullLifeImg">
+    <img src="img/emptyHeart.png" id="playerEmptyLifeImg">
 </div>
+
 <script src="script/game.js"></script>
 <script src="script/menu.js"></script>
 <script src="script/snake.js"></script>
+<script src="script/pong.js"></script>
 </body>
 </html>
