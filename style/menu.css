@@ -1,0 +1,64 @@
+#startPage{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    text-align: center;
+    margin-top: 300px;
+
+}
+#formH1{ font-family: 'Luckiest Guy', cursive;
+    text-align: center;
+    font-size: 60px;
+    text-shadow: 2px 2px lightcoral;
+    background-color: lavenderblush;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+
+}
+h2{font-family: 'Luckiest Guy', cursive;
+    text-shadow: 2px 2px lightcoral;}
+
+#startForm{
+    width: 300px;
+    border: 2px solid lightgrey;
+    background-color: lightpink;
+    height: 200px;
+}
+#formInput{
+    border-radius: 30px;
+    height: 50px;
+    padding-left: 5px;
+    font-size: 20px;
+
+}
+#snakeButton{
+    width: 300px;
+    height: 200px;
+    font-size: 50px;
+    background-color: lavenderblush;
+    text-shadow: 2px 2px lightcoral;
+    font-family: 'Luckiest Guy', cursive;
+}
+#pongButton{
+    margin-left: 200px;
+    width: 300px;
+    height: 200px;
+    font-size: 50px;
+    background-color: lavenderblush;
+    text-shadow: 2px 2px lightcoral;
+    font-family: 'Luckiest Guy', cursive;
+}
+
+.Return{
+    background-color: red;
+    color: white;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    height: 40px;
+    box-shadow: red;
+    font-family: 'Luckiest Guy', cursive;
+    text-shadow: 2px 2px black;
+}
+.Return:hover{
+    background-color: rosybrown;
+}
+
