@@ -9,7 +9,7 @@ var distanceMoved;
 var apple;
 var snakeSize;
 var shouldGrow = false;
-var snakeHeadExtraSize = 10;
+var snakeHeadExtraSize = 8;
 var directionX,directionY;
 var newDirectionX, newDirectionY;
 var gameOver;
@@ -88,7 +88,7 @@ function render() {
     ctx.fillStyle= "#41FF00";
 
     ctx.fillStyle= "#e60a00";
-    ctx.drawImage(appleImg,apple.appleX-3,apple.appleY-3, snakeSize+6, snakeSize+6);
+    ctx.drawImage(appleImg,apple.appleX,apple.appleY, snakeSize, snakeSize);
     ctx.fillStyle= "#ffda00";
 
     ctx.fillRect(posistionPowerUpp.powerUppX,posistionPowerUpp.powerUppY,snakeSize,snakeSize);
@@ -135,9 +135,11 @@ function updatePosition() {
         directionY = newDirectionY;
         distanceMoved = 0;
         if(shouldGrow) {
-            setTimeout(new function () {
-            snake.unshift({snakeX: snake[0].snakeX-snake[0].directionX, snakeY: snake[0].snakeY-snake[0].directionY, directionX: snake[0].directionX, directionY: snake[0].directionY});
-            }, getSpeed()*updateInterval);
+            setTimeout(function () {
+                console.log("grow");
+                snake.unshift({snakeX: snake[0].snakeX-snake[0].directionX, snakeY: snake[0].snakeY-snake[0].directionY, directionX: snake[0].directionX, directionY: snake[0].directionY});
+            }, getSpeed()*updateInterval+updateInterval);
+            console.log("growded");
             shouldGrow = false;
         }
     }
@@ -285,8 +287,8 @@ function powerUpp() {
 }
 
 function getRandomLocation(checkForApple, checkForPowerUp) {
-    var x = Math.floor(Math.random() * Math.floor(size/snakeSize)) * snakeSize;
-    var y = Math.floor(Math.random() * Math.floor(size/snakeSize)) * snakeSize;
+    var x = Math.floor(Math.random() * Math.floor(size/snakeSize-0.5)) * snakeSize;
+    var y = Math.floor(Math.random() * Math.floor(size/snakeSize-0.5)) * snakeSize;
     for(var i = 0; i < snake.length; i++) {
         if(x === snake[i].snakeX && y === snake[i].snakeY) {
             return {x:-100, y:-100};
