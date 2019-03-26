@@ -1,53 +1,44 @@
-var canvas,ctx,interval;
-var updateInterval = 10;
-var size = 500;
-var scorePerSecond = 0.1;
-var scorePerApple = 10;
-var scorePerPowerUp = 20;
-var snake;
-var distanceMoved;
-var apple;
-var snakeSize;
-var shouldGrow = false;
-var snakeHeadExtraSize = 8;
-var directionX,directionY;
-var newDirectionX, newDirectionY;
-var gameOver;
-var score = 0;
-var cantMove = false;
-var posistionPowerUpp;
-var invert;
-var wallHack;
-var powerUppChoice;
-var spawnPowerUpTimer;
-var appleImg = document.getElementById('appleImg');
+let snakeCanvas,snakeCtx,interval;
+let updateInterval = 10;
+let size = 500;
+let scorePerSecond = 0.1;
+let scorePerApple = 10;
+let scorePerPowerUp = 20;
+let snake;
+let distanceMoved;
+let apple;
+let snakeSize;
+let shouldGrow = false;
+let snakeHeadExtraSize = 8;
+let directionX,directionY;
+let newDirectionX, newDirectionY;
+let snakeGameOver;
+let score = 0;
+let cantMove = false;
+let posistionPowerUpp;
+let invert;
+let wallHack;
+let powerUppChoice;
+let spawnPowerUpTimer;
+let appleImg = document.getElementById('appleImg');
 
-var snakeHeadUpp = document.getElementById('snakeHeadUpp');
-var snakeHeadRight = document.getElementById('snakeHeadRight');
-var snakeHeadDown = document.getElementById('snakeHeadDown');
-var snakeHeadLeft = document.getElementById('snakeHeadLeft');
-var snakeBody = document.getElementById('snakeBody');
-var backgroundImg = document.getElementById('backgroundImg');
+let snakeHeadUpp = document.getElementById('snakeHeadUpp');
+let snakeHeadRight = document.getElementById('snakeHeadRight');
+let snakeHeadDown = document.getElementById('snakeHeadDown');
+let snakeHeadLeft = document.getElementById('snakeHeadLeft');
+let snakeBody = document.getElementById('snakeBody');
+let backgroundImg = document.getElementById('backgroundImg');
 
-var playMenu = document.getElementById("buttonDiv");
+let snakePlayMenu = document.getElementById("snake-buttonDiv");
 
-window.onload = function windowInit() {
-    canvas = document.getElementById('canvas');
-    ctx = canvas.getContext('2d');
-    ctx.shadowBlur = 2;
-    ctx.shadowColor = 'black';
-    ctx.shadowOffsetX = 2;
-    ctx.shadowOffsetY = 2;
-    //init()
 
-};
-
- function init() {
-     playMenu.style.display = "none";
+ function snakeInit() {
+     snakePlayMenu.style.display = "none";
+     snakeCtx.fillStyle = "#000000";
 
      wallHack = false;
      invert = false;
-     gameOver = false;
+     snakeGameOver = false;
      snake = [];
      distanceMoved = 0;
      shouldGrow = false;
@@ -59,7 +50,7 @@ window.onload = function windowInit() {
     window.clearInterval(spawnPowerUpTimer);
      posistionPowerUpp = {powerUppX: 10*snakeSize, powerUppY: 10*snakeSize};
      apple= {appleX: getRandomLocation().x, appleY: getRandomLocation().y};
-    ctx.fillStyle = "#000000";
+
     snake.push({snakeX: snakeSize, snakeY: 0, directionX: directionX, directionY: directionY});
     snake.unshift({snakeX: 0, snakeY: 0, directionX: directionX, directionY: directionY});
 
@@ -68,6 +59,7 @@ window.onload = function windowInit() {
     interval = window.setInterval(update, updateInterval)
 
 }
+
 function update() {
     render();
     kolisionDetection();
@@ -78,22 +70,22 @@ function update() {
 
 }
 function render() {
-    ctx.clearRect(0,0,size,size);
-    ctx.drawImage(backgroundImg,0,0,size,size);
+    snakeCtx.clearRect(0,0,size,size);
+    snakeCtx.drawImage(backgroundImg,0,0,size,size);
     //Score text
-    ctx.font = "30px Luckiest Guy";
-    ctx.textAlign = "right";
-    ctx.fillText("Score: " + Math.floor(score), size-10, 30);
+    snakeCtx.font = "30px Luckiest Guy";
+    snakeCtx.textAlign = "right";
+    snakeCtx.fillText("Score: " + Math.floor(score), size-10, 30);
 
-    ctx.fillStyle= "#41FF00";
+    snakeCtx.fillStyle= "#41FF00";
 
-    ctx.fillStyle= "#e60a00";
-    ctx.drawImage(appleImg,apple.appleX,apple.appleY, snakeSize, snakeSize);
-    ctx.fillStyle= "#ffda00";
+    snakeCtx.fillStyle= "#e60a00";
+    snakeCtx.drawImage(appleImg,apple.appleX,apple.appleY, snakeSize, snakeSize);
+    snakeCtx.fillStyle= "#ffda00";
 
-    ctx.fillRect(posistionPowerUpp.powerUppX,posistionPowerUpp.powerUppY,snakeSize,snakeSize);
+    snakeCtx.fillRect(posistionPowerUpp.powerUppX,posistionPowerUpp.powerUppY,snakeSize,snakeSize);
 
-    var snakeHead;
+    let snakeHead;
     if (newDirectionX === snakeSize){
         snakeHead = snakeHeadRight;
     }
@@ -107,19 +99,19 @@ function render() {
         snakeHead = snakeHeadUpp;
     }
 
-    ctx.drawImage(snakeHead, snake[snake.length - 1].snakeX-snakeHeadExtraSize/2, snake[snake.length - 1].snakeY-snakeHeadExtraSize/2,
+    snakeCtx.drawImage(snakeHead, snake[snake.length - 1].snakeX-snakeHeadExtraSize/2, snake[snake.length - 1].snakeY-snakeHeadExtraSize/2,
         snakeSize+snakeHeadExtraSize, snakeSize+snakeHeadExtraSize);
 
-    for (var i = 0; i < snake.length-1; i++){
-        ctx.fillStyle= "#e61dcb";
+    for (let i = 0; i < snake.length-1; i++){
+        snakeCtx.fillStyle= "#e61dcb";
 
-        ctx.drawImage(snakeBody,snake[i].snakeX ,snake[i].snakeY, snakeSize, snakeSize);
+        snakeCtx.drawImage(snakeBody,snake[i].snakeX ,snake[i].snakeY, snakeSize, snakeSize);
     }
 
-    ctx.fillStyle= "#000000";
+    snakeCtx.fillStyle= "#000000";
 }
 function updatePosition() {
-    for (var i = 0; i < snake.length - 1; i++){
+    for (let i = 0; i < snake.length - 1; i++){
         snake[i] = {snakeX: snake[i].snakeX + snake[i].directionX/getSpeed(), snakeY: snake[i].snakeY + snake[i].directionY/getSpeed(), directionX: snake[i].directionX, directionY: snake[i].directionY};
 
     }
@@ -128,7 +120,7 @@ function updatePosition() {
     distanceMoved += (Math.abs(directionX) + Math.abs(directionY))/getSpeed();
     if(distanceMoved >= snakeSize) {
         score += scorePerSecond;
-        for (var i = 0; i < snake.length - 1; i++){
+        for (let i = 0; i < snake.length - 1; i++){
             snake[i] = {snakeX: snake[i].snakeX, snakeY: snake[i].snakeY, directionX: snake[i+1].directionX, directionY: snake[i+1].directionY};
         }
         directionX = newDirectionX;
@@ -147,7 +139,7 @@ function updatePosition() {
 
 }
 function kolisionDetection() {
-    for (var i = 0; i < snake.length; i++) {
+    for (let i = 0; i < snake.length; i++) {
         if (wallHack) {
             if (snake[i].snakeX < -snakeSize) {
                 snake[i].snakeX = snake[i].snakeX + size + snakeSize;
@@ -163,13 +155,13 @@ function kolisionDetection() {
             }
         }
         else if(snake[snake.length-1].snakeX < -10 || snake[i].snakeX > size-snakeSize || snake[i].snakeY < -10 || snake[i].snakeY > size-snakeSize) {
-            gameOver = true;
+            snakeGameOver = true;
         }
     }
 
-    for (var i = 1; i < snake.length -2; i++){
+    for (let i = 1; i < snake.length -2; i++){
         if (snake[snake.length-1].snakeX === snake[i].snakeX && snake[snake.length-1].snakeY === snake[i].snakeY){
-            gameOver = !gameOver;
+            snakeGameOver = !snakeGameOver;
         }
     }
 
@@ -179,7 +171,7 @@ function kolisionDetection() {
 
 function KD(event) {
     //console.log(event.keyCode);
-    var keyPress = event.keyCode;
+    let keyPress = event.keyCode;
     if (keyPress === 40 && directionY !== (invert ? snakeSize: -snakeSize) && cantMove === false ) {
         newDirectionX = 0 ;
         newDirectionY =  invert ? -snakeSize: snakeSize;
@@ -224,7 +216,7 @@ function eatApple() {
     let applePosition;
     do {
         applePosition = getRandomLocation(false, true);
-    }while (applePosition.x < 0)
+    }while (applePosition.x < 0);
     apple.appleX = applePosition.x;
     apple.appleY = applePosition.y;
     shouldGrow = true;
@@ -233,16 +225,18 @@ function eatApple() {
 
 function lost() {
 
-    if (gameOver){
-        ctx.clearRect(0,0,size,size);
+    if (snakeGameOver){
+        snakeCtx.clearRect(0,0,size,size);
+        snakeCtx.drawImage(backgroundImg,0,0,size,size);
+
         wallHack = false;
         invert = false;
-        playMenu.style.display = 'grid';
-        document.getElementById("playText").textContent = "Game Over!";
-        document.getElementById("play").textContent= "Play again?";
+        snakePlayMenu.style.display = 'grid';
+        document.getElementById("snake-playText").textContent = "Game Over!";
+        document.getElementById("snake-play").textContent= "Play again?";
 
         clearInterval(interval);
-        ctx.fillStyle = '#eee8d5';
+        snakeCtx.fillStyle = '#eee8d5';
         //ctx.font = '40px serif';
         //ctx.textAlign = 'center';
         //ctx.fillText('Refresh to play again', size / 2, size/ 2);
@@ -254,7 +248,7 @@ function spawnPowerUpp() {
     let powerUpPosition;
     do {
         powerUpPosition = getRandomLocation(true, false);
-    }while (powerUpPosition.x < 0)
+    }while (powerUpPosition.x < 0);
     posistionPowerUpp.powerUppX = powerUpPosition.x;
     posistionPowerUpp.powerUppY = powerUpPosition.y;
 }
@@ -273,7 +267,7 @@ function powerUpp() {
             break;
 
         case 2:
-            console.log("test")
+            console.log("test");
             posistionPowerUpp.powerUppX = -100;
             posistionPowerUpp.powerUppY = -100;
             invert = true;
@@ -287,9 +281,9 @@ function powerUpp() {
 }
 
 function getRandomLocation(checkForApple, checkForPowerUp) {
-    var x = Math.floor(Math.random() * Math.floor(size/snakeSize-0.5)) * snakeSize;
-    var y = Math.floor(Math.random() * Math.floor(size/snakeSize-0.5)) * snakeSize;
-    for(var i = 0; i < snake.length; i++) {
+    let x = Math.floor(Math.random() * Math.floor(size/snakeSize-0.5)) * snakeSize;
+    let y = Math.floor(Math.random() * Math.floor(size/snakeSize-0.5)) * snakeSize;
+    for(let i = 0; i < snake.length; i++) {
         if(x === snake[i].snakeX && y === snake[i].snakeY) {
             return {x:-100, y:-100};
         }
