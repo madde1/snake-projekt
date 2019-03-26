@@ -1,0 +1,142 @@
+body{
+    margin: 0;
+}
+h1{
+    font-family: 'Luckiest Guy', cursive;
+    text-align: center;
+    font-size: 60px;
+    text-shadow: 2px 2px lightcoral;
+    background-color: lavenderblush;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 82% 36%, 60% 100%, 40% 100%, 19% 33%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 82% 36%, 60% 100%, 40% 100%, 19% 33%, 0 100%);
+    margin-top: 0;
+    top:0;
+    right: 0;
+}
+.grid{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+#pongCanvas{
+    position: absolute;
+    z-index: 1;
+    border: 2px;
+    border: black;
+    border-style: solid;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+h2{font-family: 'Luckiest Guy', cursive;
+    text-shadow: 2px 2px lightcoral;}
+.collapsible {
+    grid-row-start: 3;
+    background-color: lightcoral;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    font-family: 'Luckiest Guy', cursive;
+    text-shadow: 2px 2px black;
+}
+
+.active, .collapsible:hover {
+    background-color: lightpink;
+}
+
+.content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: lavenderblush;
+}
+.highScore{
+    background-color: lavenderblush;
+    font-family: 'Luckiest Guy', cursive;
+    padding-left: 10px;
+    height: 150px;
+}
+
+#pong-play-container {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+    display: flex;
+}
+#pong-Menu{
+    z-index: 10;
+    margin: auto auto;
+    border-radius: 35px;
+    border: lightpink 40px solid;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr ;
+    grid-gap: 5px;
+    background: white;
+    color: black;
+}
+#pong-playText{
+    margin: 0 5px;
+    grid-row: 1;
+    grid-column: 1;
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 20px;
+}
+#pong-Play {
+    margin: 0 auto 10px;
+    grid-row: 2;
+    grid-column: 1;
+    padding: 10px;
+    outline: none;
+    box-shadow: 0 0 0 transparent;
+    border: 0 solid transparent;
+    font-family: 'Luckiest Guy', cursive;
+    width: 120px;
+    height: 60px;
+    background: darkseagreen;
+    font-size: 20px;
+    text-shadow: 2px 2px green;
+
+}
+
+#pong-play:hover {
+    background: green;
+    box-shadow: 0px 0px 0px transparent;
+    border: 0px solid transparent;
+    text-shadow: 0px 0px 0px transparent;
+
+}
+
+#pong {
+    display: none;
+    max-width: 100%;
+    max-height: 100%;
+}
+#return{
+    background-color: red;
+    color: white;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    height: 40px;
+    box-shadow: red;
+    font-family: 'Luckiest Guy', cursive;
+    text-shadow: 2px 2px black;
+}
+#return:hover{
+    background-color: rosybrown;
+}
+
+#playerFullLifeImg {
+    display: none;
+}
+#playerEmptyLifeImg {
+    display: none;
+}
