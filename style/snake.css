@@ -18,7 +18,7 @@ h1{
     grid-template-columns: auto auto auto;
 }
 
-canvas{
+#snakeCanvas{
     position: absolute;
     z-index: 1;
     border: 2px;
@@ -59,23 +59,6 @@ h2{font-family: 'Luckiest Guy', cursive;
     font-size: 20px;
 
 }
-#snakeButton{
-    width: 300px;
-    height: 200px;
-    font-size: 50px;
-    background-color: lavenderblush;
-    text-shadow: 2px 2px lightcoral;
-    font-family: 'Luckiest Guy', cursive;
-}
-#pongButton{
-    margin-left: 200px;
-    width: 300px;
-    height: 200px;
-    font-size: 50px;
-    background-color: lavenderblush;
-    text-shadow: 2px 2px lightcoral;
-    font-family: 'Luckiest Guy', cursive;
-}
 .collapsible {
     grid-row-start: 3;
     background-color: lightcoral;
@@ -109,14 +92,14 @@ h2{font-family: 'Luckiest Guy', cursive;
     height: 150px;
 }
 
-#play-container {
+#snake-play-container {
     position: relative;
     width: 500px;
     height: 500px;
     margin: 0 auto;
     display: flex;
 }
-#buttonDiv{
+#snake-buttonDiv{
     z-index: 10;
     margin: auto auto;
     border-radius: 35px;
@@ -126,15 +109,16 @@ h2{font-family: 'Luckiest Guy', cursive;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr ;
     grid-gap: 5px;
+    background-color: white;
 }
-#playText{
+#snake-playText{
     margin: 0 5px;
     grid-row: 1;
     grid-column: 1;
     font-family: 'Luckiest Guy', cursive;
     font-size: 20px;
 }
-#play {
+#snake-play {
     margin: 0 auto 10px;
     grid-row: 2;
     grid-column: 1;
@@ -151,7 +135,7 @@ h2{font-family: 'Luckiest Guy', cursive;
 
 }
 
-#play:hover {
+#snake-play:hover {
     background: green;
     box-shadow: 0px 0px 0px transparent;
     border: 0px solid transparent;
@@ -189,19 +173,6 @@ h2{font-family: 'Luckiest Guy', cursive;
     display: none;
     max-width: 100%;
     max-height: 100%;
-}
-#return{
-    background-color: red;
-    color: white;
-    margin-left: 10px;
-    margin-bottom: 10px;
-    height: 40px;
-    box-shadow: red;
-    font-family: 'Luckiest Guy', cursive;
-    text-shadow: 2px 2px black;
-}
-#return:hover{
-    background-color: rosybrown;
 }
 #styraOrmen{
     background-color: lavenderblush;
