@@ -56,7 +56,7 @@ h2{font-family: 'Luckiest Guy', cursive;
     transition: max-height 0.2s ease-out;
     background-color: lavenderblush;
 }
-.highScore{
+#pongHighScore{
     background-color: lavenderblush;
     font-family: 'Luckiest Guy', cursive;
     padding-left: 10px;

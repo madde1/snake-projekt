@@ -36,8 +36,9 @@
     <div class="grid">
 
         <div class="item1">
-            <div class="highScore">
+            <div id="snakeHighScore">
                 <h2>High Score</h2>
+                <ul id="snakeHighscoreList"></ul>
             </div>
             <div id="styraOrmen">
                 <h2>Styra Ormen</h2>
@@ -93,8 +94,10 @@
     <div class="grid">
 
         <div class="pong-item1">
-            <div class="highScore">
+            <div id="pongHighScore">
                 <h2>High Score</h2>
+                <ul id="pongHighscoreList">
+                </ul>
             </div>
         </div>
 
@@ -125,6 +128,7 @@
     <img src="img/emptyHeart.png" id="playerEmptyLifeImg">
 </div>
 
+<script src="script/highscore.js"></script>
 <script src="script/game.js"></script>
 <script src="script/menu.js"></script>
 <script src="script/snake.js"></script>
