@@ -154,7 +154,8 @@ function kolisionDetection() {
                 snake[i].snakeY = snake[i].snakeY - size - snakeSize;
             }
         }
-        else if(snake[snake.length-1].snakeX < -10 || snake[i].snakeX > size-snakeSize || snake[i].snakeY < -10 || snake[i].snakeY > size-snakeSize) {
+        else if(snake[snake.length-1].snakeX < -10 || snake[snake.length-1].snakeX > size-snakeSize ||
+            snake[snake.length-1].snakeY < -10 || snake[snake.length-1].snakeY > size-snakeSize) {
             snakeGameOver = true;
         }
     }
