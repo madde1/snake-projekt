@@ -26,6 +26,7 @@ let wallHack;
 let powerUppChoice;
 let spawnPowerUpTimer;
 let appleImg = document.getElementById('appleImg');
+let powerUppImg = document.getElementById('poweruppImg');
 let backgroundMusic = new sound('sound/backgroundMusic.mp3');
 let eatSound = new sound('sound/eat.mp3');
 let powerSound = new sound('sound/powerup.mp3');
@@ -102,7 +103,7 @@ function render() {
     }
     snakeCtx.fillStyle= "#ffda00";
 
-    snakeCtx.fillRect(posistionPowerUpp.powerUppX,posistionPowerUpp.powerUppY,powerupSize,powerupSize);
+    snakeCtx.drawImage(powerUppImg,posistionPowerUpp.powerUppX,posistionPowerUpp.powerUppY,powerupSize,powerupSize);
     if(powerupSize < powerupMaxSize) {
         powerupSize += (powerupMaxSize - powerupSize) * 0.05;
     }
@@ -301,7 +302,8 @@ function powerUpp() {
             invert = true;
             spawnPowerUpTimer = setTimeout(spawnPowerUpp, 10000);
             setTimeout(timeoutPowerUpp, 10000);
-            break;
+            break
+
 
     }}
 

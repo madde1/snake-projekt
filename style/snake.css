@@ -182,3 +182,6 @@ h2{font-family: 'Luckiest Guy', cursive;
 #snakeImg{
     margin-top: 15px;
 }
+#poweruppImg{
+    display: none;
+}

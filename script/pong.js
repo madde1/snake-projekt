@@ -9,6 +9,7 @@ let emptyLifeImg = document.getElementById('playerEmptyLifeImg');
 let player1Score = 0;
 let playerLife = 3;
 let losing_score = 0;
+let ballSize = 15;
 let computerScored = false;
 
 let paddle1Y = 250;
@@ -35,6 +36,12 @@ function pongInit(){
     pongCanvas.addEventListener('mousemove', function(evt) {
         let mousePos = calculateMousePos(evt);
         paddle1Y = mousePos.y - (PADDLE_HEIGHT/2);
+        if (paddle1Y + 100 > 500){
+            paddle1Y = 400;
+        }
+        else if (paddle1Y < 0){
+            paddle1Y = 0;
+        }
     });
 }
 
@@ -88,9 +95,12 @@ function pongLost() {
 function computerMovement() {
     let paddle2YCenter = paddle2Y + (PADDLE_HEIGHT/2);
     if(paddle2YCenter < ballY - 35) {
-        paddle2Y += 6;
+        paddle2Y += 9;
     } else if(paddle2YCenter > ballY + 35) {
-        paddle2Y -= 6;
+        paddle2Y -= 9;
+    }
+    if (paddle2Y + 100 > 500){
+        paddle2Y = 400;
     }
 }
 
@@ -100,27 +110,27 @@ function moveEverything() {
     ballX += ballSpeedX;
     ballY += ballSpeedY;
 
-    if(ballX < 0) {
-        if(ballY > paddle1Y &&
+    if(ballX < 10) {
+        if(ballY + ballSize> paddle1Y &&
             ballY < paddle1Y+PADDLE_HEIGHT) {
             ballSpeedX = -ballSpeedX;
             let deltaY = ballY
                 -(paddle1Y+PADDLE_HEIGHT/2);
-            ballSpeedY = deltaY * 0.35;
-        } else {
+            ballSpeedY = deltaY * 0.25;
+        } if (ballX < 0) {
             playerLife--;
             computerScored = true;
             ballReset();
 
         }
     }
-    if(ballX > pongCanvas.width) {
+    if(ballX + ballSize > pongCanvas.width) {
         if(ballY > paddle2Y &&
             ballY < paddle2Y+PADDLE_HEIGHT) {
             ballSpeedX = -ballSpeedX;
             let deltaY = ballY
                 -(paddle2Y+PADDLE_HEIGHT/2);
-            ballSpeedY = deltaY * 0.35;
+            ballSpeedY = deltaY * 0.25;
         } else {
             player1Score++;
             ballReset();
@@ -130,7 +140,7 @@ function moveEverything() {
     if(ballY < 0) {
         ballSpeedY = -ballSpeedY;
     }
-    if(ballY > pongCanvas.height) {
+    if(ballY + ballSize > pongCanvas.height) {
         ballSpeedY = -ballSpeedY;
     }
 }
@@ -175,6 +185,6 @@ function drawEverything() {
     colorRect(pongCanvas.width-PADDLE_THICKNESS,paddle2Y,PADDLE_THICKNESS,PADDLE_HEIGHT,'pink');
 
     // Ball
-    colorRect(ballX, ballY, 15, 15, 'pink');
+    colorRect(ballX, ballY, ballSize, ballSize, 'pink');
 }
 	

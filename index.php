@@ -53,7 +53,7 @@
                     <p id="snake-playText">Click play to start the game, Good Luck!</p>
                     <button id="snake-play" onclick="snakeInit()">Play?</button>
                 </div>
-                <img src="img/apple.png" id="appleImg">
+
                 <canvas id="snakeCanvas" width="500" height="500"></canvas>
             </div>
         </div>
@@ -82,7 +82,8 @@
     <img src="img/snakeHeadDown.png" id="snakeHeadDown">
     <img src="img/snakeHeadLeft.png" id="snakeHeadLeft">
     <img src="img/snakeBody.png" id="snakeBody">
-    <img src="img/apple.png" id="appleImg">
+    <img src="img/redApple.png" id="appleImg">
+    <img src="img/powerUpp.png" id="poweruppImg">
     <img src="img/background.jpg" id="backgroundImg">
 </div>
 
