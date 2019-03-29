@@ -56,6 +56,10 @@
 
                 <canvas id="snakeCanvas" width="500" height="500"></canvas>
             </div>
+            <div id="soundSettingsBox">
+                <span id="backgroundMusicVolumeText">Bakgrundsmusik:</span><input type="range" id="backgroundMusicVolume" min="0" max="1" step="0.05" value="1">
+                <span id="soundEffectsVolumeText">Ljudeffekter:</span><input type="range" id="soundEffectsVolume" min="0" max="1" step="0.05" value="1">
+            </div>
         </div>
 
         <div class="item3">
@@ -131,6 +135,7 @@
 
 <script src="script/highscore.js"></script>
 <script src="script/game.js"></script>
+<script src="script/volume.js"></script>
 <script src="script/menu.js"></script>
 <script src="script/snake.js"></script>
 <script src="script/pong.js"></script>

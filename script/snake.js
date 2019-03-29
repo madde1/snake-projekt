@@ -81,6 +81,8 @@ function update() {
     updatePosition();
     lost();
 
+    backgroundMusic.sound.volume = backgroundMusicVolume;
+    eatSound.sound.volume = powerSound.sound.volume = soundEffectsVolume;
 }
 function render() {
     snakeCtx.clearRect(0,0,size,size);
@@ -177,8 +179,8 @@ function kolisionDetection() {
         }
     }
 
-    if(snake[snake.length-1].snakeX < -10 || snake[snake.length-1].snakeX > size-snakeSize ||
-        snake[snake.length-1].snakeY < -10 || snake[snake.length-1].snakeY > size-snakeSize) {
+    if(!wallHack && (snake[snake.length-1].snakeX < -10 || snake[snake.length-1].snakeX > size-snakeSize ||
+        snake[snake.length-1].snakeY < -10 || snake[snake.length-1].snakeY > size-snakeSize)) {
         snakeGameOver = true;
     }
 
@@ -349,3 +351,9 @@ function sound(src) {
         this.sound.currentTime = 0;
     }
 }
+window.addEventListener("keydown", function(e) {
+    // space and arrow keys
+    if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+    }
+}, false);

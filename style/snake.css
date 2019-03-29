@@ -59,6 +59,31 @@ h2{font-family: 'Luckiest Guy', cursive;
     font-size: 20px;
 
 }
+input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 25px;
+    background: lightpink;
+    outline: none;
+    border-radius: 5px;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 30px;
+    height: 25px;
+    background: lightcoral;
+    cursor: pointer;
+    border:1px black solid;
+    border-radius: 5px;
+}
+#soundSettingsBox {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 20px;
+    text-shadow: 2px 2px lightcoral;
+    margin: 5px;
+    padding: 5px;
+}
 .collapsible {
     grid-row-start: 3;
     background-color: lightcoral;
