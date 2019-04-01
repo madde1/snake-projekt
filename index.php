@@ -21,12 +21,12 @@
 <body onkeydown="KD(event)">
 <section>
     <div id="startPage">
-        <button id="pongButton" onClick="playPong()">Pong</button>
+        <button id="pongButton" onClick="startPong()">Pong</button>
         <form id="startForm">
             <h1 id="formH1">Namn</h1>
             <input id=formInput type="text" name="namn" value="Namn"><br><br>
         </form>
-        <button id="snakeButton" onClick="playSnake()">Snake</button>
+        <button id="snakeButton" onClick="startSnake()">Snake</button>
     </div>
 </section>
 
@@ -133,7 +133,10 @@
     <img src="img/emptyHeart.png" id="playerEmptyLifeImg">
 </div>
 
+<script src="script/jquery-3.3.1.min.js"></script>
 <script src="script/highscore.js"></script>
+<script src="script/pongHighscore.js"></script>
+<script src="script/snakeHighscore.js"></script>
 <script src="script/game.js"></script>
 <script src="script/volume.js"></script>
 <script src="script/menu.js"></script>

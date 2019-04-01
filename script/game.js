@@ -2,8 +2,8 @@ let snakeGame = document.getElementById('snake');
 let startPage = document.getElementById('startPage');
 let pongGame = document.getElementById('pong');
 let startForms = document.getElementById('startForm');
-var backgroundMusicVolume = 1;
-var soundEffectsVolume = 1;
+let backgroundMusicVolume = 1;
+let soundEffectsVolume = 1;
 
 
 window.onload = function WindowInit() {
@@ -40,6 +40,7 @@ function playSnake() {
 }
 
 function stopSnake() {
+    score = 0;
     startPage.style.display = 'grid';
     snakeGame.style.display = 'none';
     startForms.style.display ='grid';
@@ -55,13 +56,25 @@ function playPong() {
     document.getElementById("pong-playText").textContent = "Click play to start the game, Good Luck!";
     document.getElementById("pong-Play").textContent = "Play?";
 
-   drawEverything();
+    drawEverything();
 
 }
+
 function stopPong() {
+    player1Score = 0;
     startPage.style.display = 'grid';
     pongGame.style.display = 'none';
     startForms.style.display ='grid';
 
     pongLost();
+}
+
+function startSnake() {
+    snakeDatabase();
+    playSnake();
+}
+
+function startPong() {
+    pongDatabase();
+    playPong();
 }
