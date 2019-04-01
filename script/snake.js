@@ -259,12 +259,11 @@ function lost() {
 
         wallHack = false;
         invert = false;
-        snakePlayMenu.style.display = 'grid';
-        document.getElementById("snake-playText").textContent = "Game Over!";
-        document.getElementById("snake-play").textContent= "Play again?";
 
         clearInterval(interval);
         snakeCtx.fillStyle = '#eee8d5';
+
+        checkSnakeHighscore(Math.round(score));
         //ctx.font = '40px serif';
         //ctx.textAlign = 'center';
         //ctx.fillText('Refresh to play again', size / 2, size/ 2);
