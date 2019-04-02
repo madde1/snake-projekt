@@ -20,8 +20,6 @@
 </head>
 <body onkeydown="KD(event)">
 <section id="startBackground">
-    <div id="pongBackground"></div>
-    <div id="snakeBackground"></div>
 </section>
 <section>
     <div id="startPage">
