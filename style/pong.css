@@ -173,3 +173,6 @@ h2{font-family: 'Luckiest Guy', cursive;
     padding: 0;
     background-color: white;
 }
+#pongControls {
+    margin: 10px;
+}

@@ -107,6 +107,7 @@
                 <h2>High Score</h2>
                 <ol id="pongHighscoreList"></ol>
             </div>
+            <img id="pongControls" src="img/pongControls.png" width="200" height="200">
         </div>
 
         <div class="item2">
