@@ -100,6 +100,12 @@ function pongLost() {
     document.getElementById("pong-Play").textContent= "Play again?";
     pongMusic.stop();
     pongDead.play();
+
+    checkPongHighscore(player1Score);
+    //pongMenu.style.display = 'grid';
+    //document.getElementById("pong-playText").textContent = "Game Over!";
+    //document.getElementById("pong-Play").textContent= "Play again?";
+
 }
 
 function computerMovement() {

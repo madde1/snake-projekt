@@ -30,14 +30,8 @@ h1{
 }
 h2{font-family: 'Luckiest Guy', cursive;
     text-shadow: 2px 2px lightcoral;}
-#startPage{
-    display: grid;
-    grid-template-columns: auto auto auto;
-    text-align: center;
-    margin-top: 300px;
 
-}
-#formH1{ font-family: 'Luckiest Guy', cursive;
+#snakeFormH1{ font-family: 'Luckiest Guy', cursive;
     text-align: center;
     font-size: 60px;
     text-shadow: 2px 2px lightcoral;
@@ -46,13 +40,14 @@ h2{font-family: 'Luckiest Guy', cursive;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 
 }
-#startForm{
+
+#snakeStartForm{
     width: 300px;
     border: 2px solid lightgrey;
     background-color: lightpink;
     height: 200px;
 }
-#formInput{
+#snakeFormInput{
     border-radius: 30px;
     height: 50px;
     padding-left: 5px;
@@ -187,12 +182,6 @@ input[type=range]::-webkit-slider-thumb {
     display: none;
 }
 
-.item2{
-    width: 800px;
-}
-.item3{width: 350px;}
-.item1{width: 350px;
-    margin-left: 10px}
 
 #snake {
     display: none;
@@ -209,4 +198,13 @@ input[type=range]::-webkit-slider-thumb {
 }
 #poweruppImg{
     display: none;
+}
+#snakeForm {
+    display: none;
+    z-index: 10;
+    margin: auto auto;
+    border-radius: 35px;
+    border: lightpink 40px solid;
+    padding: 0;
+    background-color: white;
 }

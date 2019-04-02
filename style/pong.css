@@ -141,3 +141,38 @@ h2{font-family: 'Luckiest Guy', cursive;
 #playerEmptyLifeImg {
     display: none;
 }
+
+#pongFormH1{ font-family: 'Luckiest Guy', cursive;
+    text-align: center;
+    font-size: 60px;
+    text-shadow: 2px 2px lightcoral;
+    background-color: lavenderblush;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+
+}
+#pongStartForm{
+    width: 300px;
+    border: 2px solid lightgrey;
+    background-color: lightpink;
+    height: 200px;
+}
+#pongFormInput{
+    border-radius: 30px;
+    height: 50px;
+    padding-left: 5px;
+    font-size: 20px;
+
+}
+#pongForm {
+    display: none;
+    z-index: 10;
+    margin: auto auto;
+    border-radius: 35px;
+    border: lightpink 40px solid;
+    padding: 0;
+    background-color: white;
+}
+#pongControls {
+    margin: 10px;
+}

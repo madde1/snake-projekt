@@ -36,7 +36,7 @@
         <div class="item1">
             <div id="snakeHighScore">
                 <h2>High Score</h2>
-                <ul id="snakeHighscoreList"></ul>
+                <ol id="snakeHighscoreList"></ol>
             </div>
             <div id="styraOrmen">
                 <h2>Styra Ormen</h2>
@@ -50,6 +50,12 @@
                 <div id="snake-buttonDiv">
                     <p id="snake-playText">Click play to start the game, Good Luck!</p>
                     <button id="snake-play" onclick="snakeInit()">Play?</button>
+                </div>
+                <div id="snakeForm">
+                    <form id="snakeStartForm">
+                        <input id=snakeFormInput type="text" name="namn" value="Namn"><br><br>
+                        <button id="snakeInput" type="button" class="submitHighscore">Submit!</button>
+                    </form>
                 </div>
 
                 <canvas id="snakeCanvas" width="500" height="500"></canvas>
@@ -74,7 +80,7 @@
             <button class="collapsible">PowerUps</button>
             <div class="content">
                 <p>Wallhack - Ormen kan åka genom väggarna</p>
-                <p>Invert -</p>
+                <p>Invert - Kontrollerna är omvända. Vänster -> Höger, Upp -> Ner osv.</p>
             </div>
             <img id="snakeImg" src="img/snake.png" width="300" height="200">
         </div>
@@ -96,37 +102,46 @@
     <button class="Return" onclick="stopPong()">Return to main page</button>
     <div class="grid">
 
-        <div class="pong-item1">
+        <div class="item1">
             <div id="pongHighScore">
                 <h2>High Score</h2>
-                <ul id="pongHighscoreList">
-                </ul>
+                <ol id="pongHighscoreList"></ol>
             </div>
+            <img id="pongControls" src="img/pongControls.png" width="200" height="200">
         </div>
 
-        <div class="pong-item2">
+        <div class="item2">
             <div id="pong-play-container">
                 <div id="pong-Menu">
                     <p id="pong-playText">Click play to start the game, Good Luck!</p>
                     <button id="pong-Play" onclick="pongInit()">Play?</button>
                 </div>
+                <div id="pongForm">
+                    <form id="pongStartForm">
+                        <input id="pongFormInput" type="text" name="namn" value="Namn"><br><br>
+                        <button id="pongInput" type="button" class="submitHighscore">Submit!</button>
+                    </form>
+                </div>
                 <canvas id="pongCanvas" width="500" height="500"></canvas>
             </div>
         </div>
 
-        <div class="pong-item3">
+        <div class="item3">
             <h2>Meny</h2>
             <button class="collapsible">Regler</button>
             <div class="content">
                 <ul>
+                    <li>Går bollen förbi dig och i väggen bakom dig förlorar du ett liv</li>
+                    <li>Får du den förbi motståndaren och i väggen bakom får du 1 poäng</li>
+                    <li>Du har 3 liv på dig att få så många poäng som möjligt</li>
                 </ul>
             </div>
+
             <button class="collapsible"></button>
             <div class="content">
-            </div>
             <img id="snakeImg" src="img/pong.png" width="300" height="300">
-        </div>
             </div>
+
         </div>
     </div>
     <img src="img/heart.png" id="playerFullLifeImg">

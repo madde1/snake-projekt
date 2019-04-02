@@ -1,5 +1,5 @@
 function snakeDatabase() {
-    snakeContent = '';
+    let snakeContent = '';
     xmlhttp = new XMLHttpRequest();
     url = 'php/snakeHighscore.php';
 
@@ -26,29 +26,48 @@ function snakeDatabase() {
 function checkSnakeHighscore(score) {
     console.log(snakeData);
     if (score > snakeData[2].snakeScore) {
-        snakeData[2].snakeName = document.getElementById("formInput").value;
-        snakeData[2].snakeScore = score;
+        document.getElementById("snakeForm").style.display = "block";
+
+        document.getElementById("snakeInput").addEventListener("click", function(){
+            inputHighscore(score);
+        });
+    }
+    else {
+        snakePlayMenu.style.display = 'grid';
+        document.getElementById("snake-playText").textContent = "Game Over!";
+        document.getElementById("snake-play").textContent= "Play again?";
+    }
+}
+
+ function inputHighscore(score) {
+
+    document.getElementById("snakeForm").style.display = "none";
+
+    snakeData[2].snakeName = document.getElementById("snakeFormInput").value;
+    snakeData[2].snakeScore = score;
+
+     console.log(document.getElementById("snakeFormInput").value);
+     console.log(score);
 
 
-        snakeData.sort(sort_by('snakeScore', true, parseInt));
+    snakeData.sort(sort_by('snakeScore', true, parseInt));
 
-        for(let i =0;i < snakeData.length; i++)
-        {
-            $.ajax({
-                type:"POST",
-                url:"php/snakeUpdate.php",
-                data: {
-                    id: i+1,
-                    name: snakeData[i].snakeName,
-                    score: snakeData[i].snakeScore
-                }
-            });
-        }
-
-        snakeDatabase();
+    for(let i =0;i < snakeData.length; i++)
+    {
+        $.ajax({
+            type:"POST",
+            url:"php/snakeUpdate.php",
+            data: {
+                id: i+1,
+                name: snakeData[i].snakeName,
+                score: snakeData[i].snakeScore
+            }
+        });
     }
 
+    snakeDatabase();
+
     snakePlayMenu.style.display = 'grid';
-    document.getElementById("snake-playText").textContent = "Game Over!";
+    document.getElementById("snake-playText").textContent = "Well played!";
     document.getElementById("snake-play").textContent= "Play again?";
 }
