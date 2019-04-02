@@ -139,7 +139,10 @@
 
             <button class="collapsible"></button>
             <div class="content">
-            <img id="snakeImg" src="img/pong.png" width="300" height="300">
+
+            </div>
+            <div>
+                <img id="pongImg" src="img/pong.png" width="300" height="300">
             </div>
 
         </div>
