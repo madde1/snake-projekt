@@ -37,6 +37,7 @@ function playSnake() {
     snakeGame.style.display = 'block';
     document.getElementById("snake-playText").textContent = "Click play to start the game, Good Luck!";
     document.getElementById("snake-play").textContent = "Play?";
+    document.getElementById('startBackground').style.visibility = "hidden";
 }
 
 function stopSnake() {
@@ -44,7 +45,7 @@ function stopSnake() {
     startPage.style.display = 'grid';
     snakeGame.style.display = 'none';
     startForms.style.display ='grid';
-
+    document.getElementById('startBackground').style.visibility = "visible";
     snakeGameOver = true;
 }
 
@@ -55,6 +56,7 @@ function playPong() {
 
     document.getElementById("pong-playText").textContent = "Click play to start the game, Good Luck!";
     document.getElementById("pong-Play").textContent = "Play?";
+    document.getElementById('startBackground').style.visibility = "hidden";
 
     drawEverything();
 
