@@ -86,9 +86,10 @@ function pongLost() {
     canvasContext.clearRect(0,0,pongCanvas.width,pongCanvas.height);
     clearInterval(pongInterval);
 
-    pongMenu.style.display = 'grid';
-    document.getElementById("pong-playText").textContent = "Game Over!";
-    document.getElementById("pong-Play").textContent= "Play again?";
+    checkPongHighscore(player1Score);
+    //pongMenu.style.display = 'grid';
+    //document.getElementById("pong-playText").textContent = "Game Over!";
+    //document.getElementById("pong-Play").textContent= "Play again?";
 
 }
 

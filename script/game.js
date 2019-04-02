@@ -1,7 +1,6 @@
 let snakeGame = document.getElementById('snake');
 let startPage = document.getElementById('startPage');
 let pongGame = document.getElementById('pong');
-let startForms = document.getElementById('startForm');
 let backgroundMusicVolume = 1;
 let soundEffectsVolume = 1;
 
