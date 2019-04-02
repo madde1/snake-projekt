@@ -44,7 +44,7 @@ function stopSnake() {
     score = 0;
     startPage.style.display = 'grid';
     snakeGame.style.display = 'none';
-    startForms.style.display ='grid';
+
     document.getElementById('startBackground').style.visibility = "visible";
     snakeGameOver = true;
 }
@@ -52,7 +52,7 @@ function stopSnake() {
 function playPong() {
     startPage.style.display = 'none';
     pongGame.style.display = 'block';
-    startForms.style.display ='none';
+
 
     document.getElementById("pong-playText").textContent = "Click play to start the game, Good Luck!";
     document.getElementById("pong-Play").textContent = "Play?";
@@ -66,7 +66,7 @@ function stopPong() {
     player1Score = 0;
     startPage.style.display = 'grid';
     pongGame.style.display = 'none';
-    startForms.style.display ='grid';
+   
     document.getElementById('startBackground').style.visibility = "visible";
 
     pongLost();
