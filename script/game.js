@@ -44,6 +44,7 @@ function stopSnake() {
     startPage.style.display = 'grid';
     snakeGame.style.display = 'none';
 
+    snakePlayMenu.style.display = 'grid';
     document.getElementById('startBackground').style.visibility = "visible";
     snakeGameOver = true;
 }
@@ -65,7 +66,8 @@ function stopPong() {
     player1Score = 0;
     startPage.style.display = 'grid';
     pongGame.style.display = 'none';
-   
+    document.getElementById("pong-Menu").style.display = "none";
+
     document.getElementById('startBackground').style.visibility = "visible";
 
     pongLost();

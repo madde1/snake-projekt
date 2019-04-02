@@ -31,28 +31,30 @@ h1{
 h2{font-family: 'Luckiest Guy', cursive;
     text-shadow: 2px 2px lightcoral;}
 
-#snakeFormH1{ font-family: 'Luckiest Guy', cursive;
+#snakeFormH2{ font-family: 'Luckiest Guy', cursive;
     text-align: center;
-    font-size: 60px;
+    font-size: 25px;
     text-shadow: 2px 2px lightcoral;
-    background-color: lavenderblush;
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    margin: 0 0 10px 0;
 
 }
 
 #snakeStartForm{
     width: 300px;
-    border: 2px solid lightgrey;
-    background-color: lightpink;
+    background-color: white;
     height: 200px;
 }
+#snakeFormInput:focus {
+    outline: none;
+}
 #snakeFormInput{
+    margin: 0px 10px;
     border-radius: 30px;
     height: 50px;
     padding-left: 5px;
     font-size: 20px;
-
 }
 input[type=range] {
     -webkit-appearance: none;
@@ -191,7 +193,10 @@ input[type=range]::-webkit-slider-thumb {
 #styraOrmen{
     background-color: lavenderblush;
     font-family: 'Luckiest Guy', cursive;
-    padding-left: 10px;
+    padding: 0 0 5px 10px;
+}
+#wasdImg{
+    margin-top: 15px;
 }
 #snakeImg{
     margin-top: 15px;
@@ -206,5 +211,17 @@ input[type=range]::-webkit-slider-thumb {
     border-radius: 35px;
     border: lightpink 40px solid;
     padding: 0;
-    background-color: white;
+}
+
+#snakeInput {
+    margin: 10px auto 0 30%;
+    outline: none;
+    box-shadow: 0 0 0 transparent;
+    border: 0 solid transparent;
+    font-family: 'Luckiest Guy', cursive;
+    width: 120px;
+    height: 60px;
+    background: darkseagreen;
+    font-size: 20px;
+    text-shadow: 2px 2px green;
 }

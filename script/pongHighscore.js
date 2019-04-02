@@ -26,6 +26,7 @@ function pongDatabase() {
 function checkPongHighscore(score) {
     console.log(pongData);
     if (score > pongData[2].pongScore) {
+        document.getElementById("pong-Menu").style.display = "none";
         document.getElementById("pongForm").style.display = "block";
 
         document.getElementById("pongInput").addEventListener("click", function(){
@@ -65,9 +66,9 @@ function pongInputHighscore(score) {
         });
     }
 
-    pongDatabase();
-
     document.getElementById("pong-Menu").style.display = 'grid';
     document.getElementById("pong-playText").textContent = "Well played!";
     document.getElementById("pong-Play").textContent= "Play again?";
+
+    pongDatabase();
 }

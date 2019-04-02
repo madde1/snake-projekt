@@ -26,6 +26,7 @@ function snakeDatabase() {
 function checkSnakeHighscore(score) {
     console.log(snakeData);
     if (score > snakeData[2].snakeScore) {
+        snakePlayMenu.style.display = 'none';
         document.getElementById("snakeForm").style.display = "block";
 
         document.getElementById("snakeInput").addEventListener("click", function(){

@@ -53,7 +53,8 @@
                 </div>
                 <div id="snakeForm">
                     <form id="snakeStartForm">
-                        <input id=snakeFormInput type="text" name="namn" value="Namn"><br><br>
+                        <h2 id="snakeFormH2">You beat a highscore!</h2>
+                        <input id=snakeFormInput type="text" name="namn" placeholder="namn" value="">
                         <button id="snakeInput" type="button" class="submitHighscore">Submit!</button>
                     </form>
                 </div>
@@ -107,6 +108,10 @@
                 <h2>High Score</h2>
                 <ol id="pongHighscoreList"></ol>
             </div>
+            <div id="styraPaddle">
+                <h2>Styra Vänstra Paddel</h2>
+                <p>Rör musen upp/ner för att styra vänstra paddeln</p>
+            </div>
             <img id="pongControls" src="img/pongControls.png" width="200" height="200">
         </div>
 
@@ -118,7 +123,8 @@
                 </div>
                 <div id="pongForm">
                     <form id="pongStartForm">
-                        <input id="pongFormInput" type="text" name="namn" value="Namn"><br><br>
+                        <h2 id="pongFormH2">You beat a highscore!</h2>
+                        <input id=pongFormInput type="text" name="namn" placeholder="namn" value="">
                         <button id="pongInput" type="button" class="submitHighscore">Submit!</button>
                     </form>
                 </div>
@@ -136,12 +142,7 @@
                     <li>Du har 3 liv på dig att få så många poäng som möjligt</li>
                 </ul>
             </div>
-
-            <button class="collapsible"></button>
-            <div class="content">
             <img id="snakeImg" src="img/pong.png" width="300" height="300">
-            </div>
-
         </div>
     </div>
     <img src="img/heart.png" id="playerFullLifeImg">
