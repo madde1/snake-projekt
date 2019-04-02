@@ -67,6 +67,7 @@ function stopPong() {
     startPage.style.display = 'grid';
     pongGame.style.display = 'none';
     startForms.style.display ='grid';
+    document.getElementById('startBackground').style.visibility = "visible";
 
     pongLost();
 }
