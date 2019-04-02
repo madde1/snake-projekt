@@ -24,10 +24,6 @@
 <section>
     <div id="startPage">
         <button id="pongButton" onClick="startPong()">Pong</button>
-        <form id="startForm">
-            <h1 id="formH1">Namn</h1>
-            <input id=formInput type="text" name="namn" value="Namn"><br><br>
-        </form>
         <button id="snakeButton" onClick="startSnake()">Snake</button>
     </div>
 </section>
