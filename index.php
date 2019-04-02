@@ -42,7 +42,7 @@
                 <h2>Styra Ormen</h2>
                 <p>Använd tangenterna WASD för att styra ormen</p>
             </div>
-            <img id="wasdImg" src="img/wasd.png" width="350" height="200">
+            <img id="wasdImg" src="img/arrows.png" width="350" height="200">
         </div>
 
         <div class="item2">
@@ -123,7 +123,9 @@
             </div>
             <button class="collapsible"></button>
             <div class="content">
-
+            </div>
+            <img id="snakeImg" src="img/pong.png" width="300" height="300">
+        </div>
             </div>
         </div>
     </div>

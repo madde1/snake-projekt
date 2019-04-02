@@ -30,6 +30,7 @@ let powerUppImg = document.getElementById('poweruppImg');
 let backgroundMusic = new sound('sound/backgroundMusic.mp3');
 let eatSound = new sound('sound/eat.mp3');
 let powerSound = new sound('sound/powerup.mp3');
+let snakeDead = new sound('sound/snake game over.mp3')
 
 let snakeHeadUpp = document.getElementById('snakeHeadUpp');
 let snakeHeadRight = document.getElementById('snakeHeadRight');
@@ -182,6 +183,7 @@ function kolisionDetection() {
     if(!wallHack && (snake[snake.length-1].snakeX < -10 || snake[snake.length-1].snakeX > size-snakeSize ||
         snake[snake.length-1].snakeY < -10 || snake[snake.length-1].snakeY > size-snakeSize)) {
         snakeGameOver = true;
+        snakeDead.play();
     }
 
     for (let i = 1; i < snake.length -2; i++){

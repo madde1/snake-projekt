@@ -11,6 +11,11 @@ let playerLife = 3;
 let losing_score = 0;
 let ballSize = 15;
 let computerScored = false;
+let pongBounce = new sound('sound/pong ljud.mp3');
+let pongMusic = new sound ('sound/pong bakgrundsmusik.mp3');
+let pongDead = new sound('sound/pong game over.mp3');
+let pongHealth = new sound('sound/pong lose health.mp3');
+let pongScores = new sound('sound/pong score.mp3');
 
 let paddle1Y = 250;
 let paddle2Y = 250;
@@ -43,6 +48,8 @@ function pongInit(){
             paddle1Y = 0;
         }
     });
+    pongMusic.sound.loop = true;
+    pongMusic.play();
 }
 
 function calculateMousePos(evt) {
@@ -70,11 +77,13 @@ function ballReset() {
 
         ballSpeedX = ballSpeedX = -10;
         ballSpeedY = ballSpeedY = 4;
+        pongHealth.play();
     }
     else {
 
         ballSpeedX = ballSpeedX = 10;
         ballSpeedY = ballSpeedY = 4;
+        pongScores.play();
     }
     ballX = pongCanvas.width/2;
     ballY = pongCanvas.height/2;
@@ -89,7 +98,8 @@ function pongLost() {
     pongMenu.style.display = 'grid';
     document.getElementById("pong-playText").textContent = "Game Over!";
     document.getElementById("pong-Play").textContent= "Play again?";
-
+    pongMusic.stop();
+    pongDead.play();
 }
 
 function computerMovement() {
@@ -116,6 +126,7 @@ function moveEverything() {
             ballSpeedX = -ballSpeedX;
             let deltaY = ballY
                 -(paddle1Y+PADDLE_HEIGHT/2);
+            pongBounce.play();
             ballSpeedY = deltaY * 0.25;
         } if (ballX < 0) {
             playerLife--;
@@ -130,6 +141,7 @@ function moveEverything() {
             ballSpeedX = -ballSpeedX;
             let deltaY = ballY
                 -(paddle2Y+PADDLE_HEIGHT/2);
+            pongBounce.play();
             ballSpeedY = deltaY * 0.25;
         } else {
             player1Score++;
@@ -139,9 +151,11 @@ function moveEverything() {
     }
     if(ballY < 0) {
         ballSpeedY = -ballSpeedY;
+        pongBounce.play();
     }
     if(ballY + ballSize > pongCanvas.height) {
         ballSpeedY = -ballSpeedY;
+        pongBounce.play();
     }
 }
 
