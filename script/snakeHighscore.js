@@ -23,15 +23,12 @@ function snakeDatabase() {
         }
     }
 }
-function checkSnakeHighscore(score) {
-    console.log(snakeData);
+function checkSnakeHighscore() {
     if (score > snakeData[2].snakeScore) {
         snakePlayMenu.style.display = 'none';
         document.getElementById("snakeForm").style.display = "block";
 
-        document.getElementById("snakeInput").addEventListener("click", function(){
-            inputHighscore(score);
-        });
+        document.getElementById("snakeInput").addEventListener("click", snakeListener)
     }
     else {
         snakePlayMenu.style.display = 'grid';
@@ -40,16 +37,12 @@ function checkSnakeHighscore(score) {
     }
 }
 
- function inputHighscore(score) {
+ function snakeInputHighscore() {
 
     document.getElementById("snakeForm").style.display = "none";
 
     snakeData[2].snakeName = document.getElementById("snakeFormInput").value;
     snakeData[2].snakeScore = score;
-
-     console.log(document.getElementById("snakeFormInput").value);
-     console.log(score);
-
 
     snakeData.sort(sort_by('snakeScore', true, parseInt));
 
@@ -71,4 +64,13 @@ function checkSnakeHighscore(score) {
     snakePlayMenu.style.display = 'grid';
     document.getElementById("snake-playText").textContent = "Well played!";
     document.getElementById("snake-play").textContent= "Play again?";
+
+
+    document.getElementById("snakeFormInput").value = "";
+
+    document.getElementById("snakeInput").removeEventListener("click", snakeListener);
 }
+
+let snakeListener = function () {
+  snakeInputHighscore();
+};

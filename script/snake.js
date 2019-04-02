@@ -46,6 +46,7 @@ let snakePlayMenu = document.getElementById("snake-buttonDiv");
      snakePlayMenu.style.display = "none";
      snakeCtx.fillStyle = "#000000";
 
+     score = 0;
      wallHack = false;
      invert = false;
      snakeGameOver = false;
@@ -57,7 +58,7 @@ let snakePlayMenu = document.getElementById("snake-buttonDiv");
      directionY = 0;
      newDirectionX = snakeSize;
      newDirectionY = 0;
-    window.clearInterval(spawnPowerUpTimer);
+     window.clearInterval(spawnPowerUpTimer);
      posistionPowerUpp = {powerUppX: 10*snakeSize, powerUppY: 10*snakeSize};
      powerUpText = "No Power Up";
      powerupSize = powerupMaxSize = snakeSize;
@@ -69,7 +70,6 @@ let snakePlayMenu = document.getElementById("snake-buttonDiv");
     snake.push({snakeX: snakeSize, snakeY: 0, directionX: directionX, directionY: directionY});
     snake.unshift({snakeX: 0, snakeY: 0, directionX: directionX, directionY: directionY});
 
-     score = 0;
     interval = window.setInterval(update, updateInterval)
 
 }
@@ -264,8 +264,8 @@ function lost() {
 
         clearInterval(interval);
         snakeCtx.fillStyle = '#eee8d5';
-
-        checkSnakeHighscore(Math.round(score));
+        score = Math.round(score);
+        checkSnakeHighscore();
         //ctx.font = '40px serif';
         //ctx.textAlign = 'center';
         //ctx.fillText('Refresh to play again', size / 2, size/ 2);

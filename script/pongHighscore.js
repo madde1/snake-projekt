@@ -23,15 +23,12 @@ function pongDatabase() {
         }
     }
 }
-function checkPongHighscore(score) {
-    console.log(pongData);
-    if (score > pongData[2].pongScore) {
+function checkPongHighscore() {
+    if (player1Score > pongData[2].pongScore) {
         document.getElementById("pong-Menu").style.display = "none";
         document.getElementById("pongForm").style.display = "block";
 
-        document.getElementById("pongInput").addEventListener("click", function(){
-            pongInputHighscore(score);
-        });
+        document.getElementById("pongInput").addEventListener("click", pongListener)
     }
     else {
         document.getElementById("pong-Menu").style.display = 'grid';
@@ -40,35 +37,41 @@ function checkPongHighscore(score) {
     }
 }
 
-function pongInputHighscore(score) {
+function pongInputHighscore() {
 
     document.getElementById("pongForm").style.display = "none";
 
     pongData[2].pongName = document.getElementById("pongFormInput").value;
-    pongData[2].pongScore = score;
-
-    console.log(document.getElementById("pongFormInput").value);
-    console.log(score);
-
+    pongData[2].pongScore = player1Score;
 
     pongData.sort(sort_by('pongScore', true, parseInt));
 
-    for(let i =0;i < pongData.length; i++)
+    for(let j = 0; j < pongData.length; j++)
     {
         $.ajax({
             type:"POST",
             url:"php/pongUpdate.php",
             data: {
-                id: i+1,
-                name: pongData[i].pongName,
-                score: pongData[i].pongScore
+                id: j+1,
+                name: pongData[j].pongName,
+                score: pongData[j].pongScore
             }
         });
     }
+
+    pongDatabase();
 
     document.getElementById("pong-Menu").style.display = 'grid';
     document.getElementById("pong-playText").textContent = "Well played!";
     document.getElementById("pong-Play").textContent= "Play again?";
 
-    pongDatabase();
+
+    document.getElementById("pongFormInput").value = "";
+
+    document.getElementById("pongInput").removeEventListener("click", pongListener);
 }
+
+let pongListener = function () {
+    pongInputHighscore();
+};
+

@@ -101,7 +101,7 @@ function pongLost() {
     pongMusic.stop();
     pongDead.play();
 
-    checkPongHighscore(player1Score);
+    checkPongHighscore();
     //pongMenu.style.display = 'grid';
     //document.getElementById("pong-playText").textContent = "Game Over!";
     //document.getElementById("pong-Play").textContent= "Play again?";
