@@ -190,8 +190,12 @@ h2{font-family: 'Luckiest Guy', cursive;
     text-shadow: 2px 2px green;
 }
 
-#styraPaddle{
+#styraPaddle {
     background-color: lavenderblush;
     font-family: 'Luckiest Guy', cursive;
     padding: 0 0 5px 10px;
+}
+
+#pongImg{
+    margin-top: 15px;
 }

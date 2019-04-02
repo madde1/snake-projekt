@@ -142,7 +142,7 @@
                     <li>Du har 3 liv på dig att få så många poäng som möjligt</li>
                 </ul>
             </div>
-            <img id="snakeImg" src="img/pong.png" width="300" height="300">
+            <img id="pongImg" src="img/pong.png" width="300" height="300">
         </div>
     </div>
     <img src="img/heart.png" id="playerFullLifeImg">
