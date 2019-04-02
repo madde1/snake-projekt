@@ -16,52 +16,141 @@ section#startBackground {
     display: grid;
     grid-template-columns: auto auto;
     text-align: center;
-    margin-top: 300px;
-    margin-left: 100px;
-}
-#formH1{ font-family: 'Luckiest Guy', cursive;
-    text-align: center;
-    font-size: 60px;
-    text-shadow: 2px 2px lightcoral;
-    background-color: lavenderblush;
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    justify-content: center;
 
 }
+
 h2{font-family: 'Luckiest Guy', cursive;
     text-shadow: 2px 2px lightcoral;}
-
-#startForm{
-    width: 300px;
-    border: 2px solid lightgrey;
-    background-color: lightpink;
-    height: 200px;
+:root{
+    --button-height: 3rem;
+    --color-text: rgba(0,0,0,.25);
+    --color-text-shadow: rgba(255,255,255,.15);
+    --color-bg:#FFCDCD;
+    --color-bg-light:#FFE2E2;
+    --color-bg-dark: #FFD6D6;
+    --color-overlay-light: rgba(255,255,255,.2);
+    --color-overlay-medium: rgba(0,0,0,.1);
+    --color-overlay-dark: rgba(0,0,0,.2);
+    --color-tab-focus: rgba(255,255,255,.15);
 }
-#formInput{
-    border-radius: 30px;
-    height: 50px;
-    padding-left: 5px;
-    font-size: 20px;
 
-}
 #snakeButton{
+    position:relative;
+    appearance:none;
+    box-sizing:border-box;
+    font-size:2.5rem;
+    font-family: 'Open Sans', sans-serif;
+    background: var(--color-bg);
     width: 300px;
-    height: 200px;
-    font-size: 50px;
-    background-color: lavenderblush;
-    text-shadow: 2px 2px lightcoral;
-    font-family: 'Luckiest Guy', cursive;
+    height:calc(var(--button-height)*2) ;
+    border-radius:calc( var(--button-height) / 1);
+    border: 2px solid var(--color-text);
+    font-weight:800;
+    text-transform:uppercase;
+    color:var(--color-text);
+    text-shadow: 1px 1px var(--color-text-shadow);
+    cursor:pointer;
+    margin:6px 6px;
+    letter-spacing:.1em;
+    transition: all 200ms ease;
+    box-shadow:
+            -1px  -1px 1px var(--color-bg)
+            0 0 0 4px var(--color-overlay-medium)
+            1px  1px 1px var(--color-bg-dark)
+            inset .0 .0 .0 var(--color-overlay-dark)
+            inset .5rem .5rem .25rem var(--color-bg-light);
+    outline:none;
+
 }
-#pongButton{
-    margin-left: 200px;
-    width: 300px;
-    height: 200px;
-    font-size: 50px;
-    background-color: lavenderblush;
-    text-shadow: 2px 2px lightcoral;
-    font-family: 'Luckiest Guy', cursive;
+#snakeButton::-moz-focus-inner{
+    outline:none;
+    border:none;
+}
+#snakeButton:focus{
+    outline:none;
+    box-shadow:
+            -1px -1px 1px var(--color-bg-dark)
+            0 0 0 4px var(--color-tab-focus)
+            1px  1px 1px var(--color-bg-dark)
+            inset 0 0 0 var(--color-overlay-dark)
+            inset .5rem .5rem .25rem var(--color-bg-light);
 }
 
+#snakeButton:hover{
+    box-shadow:
+            -1px -1px 1px var(--color-bg-dark),
+            0 0 0 4px var(--color-overlay-dark),
+            1px  1px 1px var(--color-bg-dark),
+            inset 0 0 0 var(--color-overlay-dark),
+            inset .5rem .5rem .25rem var(--color-bg-light);
+}
+
+#snakeButton:active{
+    box-shadow:
+            inset 1px 1px 1px var(--color-bg),
+            0 0 0 4px var(--color-overlay-dark),
+            inset -1px -1px 1px var(--color-bg-light),
+            inset .5rem .5rem .75rem var(--color-bg-dark),
+            inset .5rem .5rem .5rem var(--color-bg-light);
+}
+
+#pongButton{
+    position:relative;
+    appearance:none;
+    box-sizing:border-box;
+    font-size:2.5rem;
+    font-family: 'Open Sans', sans-serif;
+    background: var(--color-bg);
+    width: 300px;
+    height:calc(var(--button-height)*2) ;
+    border-radius:calc( var(--button-height) / 1);
+    border: 2px solid var(--color-text);
+    font-weight:800;
+    text-transform:uppercase;
+    color:var(--color-text);
+    text-shadow: 1px 1px var(--color-text-shadow);
+    cursor:pointer;
+    margin:6px 6px;
+    letter-spacing:.1em;
+    transition: all 200ms ease;
+    box-shadow:
+            -1px  -1px 1px var(--color-bg)
+            0 0 0 4px var(--color-overlay-medium)
+            1px  1px 1px var(--color-bg-dark)
+            inset .0 .0 .0 var(--color-overlay-dark)
+            inset .5rem .5rem .25rem var(--color-bg-light);
+    outline:none;
+}
+#pongButton::-moz-focus-inner{
+    outline:none;
+    border:none;
+}
+#pongButton:focus{
+    outline:none;
+    box-shadow:
+            -1px -1px 1px var(--color-bg-dark)
+            0 0 0 4px var(--color-tab-focus)
+            1px  1px 1px var(--color-bg-dark)
+            inset 0 0 0 var(--color-overlay-dark)
+            inset .5rem .5rem .25rem var(--color-bg-light);
+}
+#pongButton:hover{
+    box-shadow:
+            -1px -1px 1px var(--color-bg-dark),
+            0 0 0 4px var(--color-overlay-dark),
+            1px  1px 1px var(--color-bg-dark),
+            inset 0 0 0 var(--color-overlay-dark),
+            inset .5rem .5rem .25rem var(--color-bg-light);
+}
+#pongButton:active{
+    box-shadow:
+            inset 1px 1px 1px var(--color-bg),
+            0 0 0 4px var(--color-overlay-dark),
+            inset -1px -1px 1px var(--color-bg-light),
+            inset .5rem .5rem .75rem var(--color-bg-dark),
+            inset .5rem .5rem .5rem var(--color-bg-light);
+}
 .Return{
     background-color: red;
     color: white;
