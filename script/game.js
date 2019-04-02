@@ -32,7 +32,7 @@ window.onload = function WindowInit() {
 
 function playSnake() {
 
-    startForms.style.display ='none';
+
     startPage.style.display = 'none';
     snakeGame.style.display = 'block';
     document.getElementById("snake-playText").textContent = "Click play to start the game, Good Luck!";
