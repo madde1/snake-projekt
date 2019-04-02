@@ -114,9 +114,11 @@
                 <div id="pong-Menu">
                     <p id="pong-playText">Click play to start the game, Good Luck!</p>
                     <button id="pong-Play" onclick="pongInit()">Play?</button>
+                </div>
+                <div id="pongForm">
                     <form id="pongStartForm">
-                        <input id="pongFormInput" type="text" name="namn" value="Namn">
-                        <button class="submitHighscore" onclick="inputHighscore()">Submit!</button>
+                        <input id="pongFormInput" type="text" name="namn" value="Namn"><br><br>
+                        <button id="pongInput" type="button" class="submitHighscore">Submit!</button>
                     </form>
                 </div>
                 <canvas id="pongCanvas" width="500" height="500"></canvas>

@@ -1,4 +1,4 @@
-let xmlhttp, pongData, url, snakeData, pongContent = "";
+let xmlhttp, pongData, url, snakeData;
 
 var sort_by = function(field, reverse, primer){
 
