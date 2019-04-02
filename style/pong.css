@@ -116,6 +116,7 @@ h2{font-family: 'Luckiest Guy', cursive;
 }
 
 #pong {
+    background-color: white;
     display: none;
     max-width: 100%;
     max-height: 100%;
