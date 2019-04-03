@@ -38,6 +38,8 @@ function pongInit(){
     pongInterval = setInterval(function() {
         moveEverything();
         drawEverything();
+        pongBounce.sound.volume = pongDead.sound.volume = pongHealth.sound.volume = pongScores.sound.volume = soundEffectsVolume;
+        pongMusic.sound.volume = backgroundMusicVolume;
     }, 1000/framesPerSecond);
 
     pongCanvas.addEventListener('mousemove', function(evt) {
