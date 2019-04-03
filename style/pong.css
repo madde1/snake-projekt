@@ -1,18 +1,4 @@
-body{
-    margin: 0;
-}
-h1{
-    font-family: 'Luckiest Guy', cursive;
-    text-align: center;
-    font-size: 60px;
-    text-shadow: 2px 2px lightcoral;
-    background-color: lavenderblush;
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 82% 36%, 60% 100%, 40% 100%, 19% 33%, 0 100%);
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 82% 36%, 60% 100%, 40% 100%, 19% 33%, 0 100%);
-    margin-top: 0;
-    top:0;
-    right: 0;
-}
+
 .grid{
     display: grid;
     grid-template-columns: auto auto auto;
