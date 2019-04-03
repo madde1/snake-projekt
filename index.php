@@ -130,6 +130,10 @@
                 </div>
                 <canvas id="pongCanvas" width="500" height="500"></canvas>
             </div>
+            <div id="soundSettingsBox">
+                <span id="backgroundMusicVolumeText">Bakgrundsmusik:</span><input type="range" id="backgroundMusicVolume" min="0" max="1" step="0.05" value="1">
+                <span id="soundEffectsVolumeText">Ljudeffekter:</span><input type="range" id="soundEffectsVolume" min="0" max="1" step="0.05" value="1">
+            </div>
         </div>
 
         <div class="item3">
