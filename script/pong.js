@@ -16,6 +16,7 @@ let pongMusic = new sound ('sound/pong bakgrundsmusik.mp3');
 let pongDead = new sound('sound/pong game over.mp3');
 let pongHealth = new sound('sound/pong lose health.mp3');
 let pongScores = new sound('sound/pong score.mp3');
+let pongGameOver = false;
 
 let paddle1Y = 250;
 let paddle2Y = 250;
@@ -31,6 +32,7 @@ function pongInit(){
     pongMenu.style.display = "none";
     player1Score = 0;
     playerLife = 3;
+    pongGameOver = false;
 
     let framesPerSecond = 30;
     pongInterval = setInterval(function() {
@@ -99,8 +101,9 @@ function pongLost() {
     document.getElementById("pong-playText").textContent = "Game Over!";
     document.getElementById("pong-Play").textContent= "Play again?";
     pongMusic.stop();
-    pongDead.play();
-
+    if(pongGameOver) {
+        pongDead.play();
+    }
     checkPongHighscore();
     //pongMenu.style.display = 'grid';
     //document.getElementById("pong-playText").textContent = "Game Over!";
@@ -136,6 +139,9 @@ function moveEverything() {
             ballSpeedY = deltaY * 0.25;
         } if (ballX < 0) {
             playerLife--;
+            if (playerLife == 0){
+                pongGameOver = true;
+            }
             computerScored = true;
             ballReset();
 

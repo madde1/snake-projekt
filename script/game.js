@@ -64,6 +64,7 @@ function playPong() {
 
 function stopPong() {
     player1Score = 0;
+    pongGameOver = false;
     startPage.style.display = 'grid';
     pongGame.style.display = 'none';
     document.getElementById("pong-Menu").style.display = "none";
